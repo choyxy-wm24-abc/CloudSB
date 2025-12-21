@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+}
+
+.menu {
+    position: relative;
+    height: 100px;
+    background: rgb(51,0,102);
+}
+
+.menu_row {
+    display: flex;
+    padding: 28px;
+    position: relative;
+    gap: 50px;
+}
+
+.menu li{
+    list-style-type: none;
+
+}
+
+.back_btn img{
+    position: relative;
+    margin-right:0px;  
+    height: 50px;
+    margin-top: -5px;
+    background: transparent;
+}
+
+.menu_row h1{
+    font-size: xx-large;
+    color: aliceblue;
+}
+
+.logout, .reset{
+    text-decoration: none !important;
+}
+
+.reset_logout {
+    display: flex;
+    position: relative;
+    gap:50px;
+    margin-left: 750px;
+}
+
+.profile, .reset_password {
+    margin-left: 120px;
+}
+
+label.upload img {
+    display: block;
+    border: 1px solid #333;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+body{
+    background-color: rgb(204, 153, 255);
+}
+
+.form {
+    display: grid;
+    grid: auto / auto auto auto auto;
+    gap: 5px;
+    place-content: start;
+    font-size: large;
+    margin-top: 10px;
+}
+
+.form > label:not(:has(*)) {
+    place-self: stretch;
+    background: #ccc;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.form > section {
+    grid-column: 1 ;
+}
+
+.err {
+    color: red;
+}
+
+.reset_password h1 {
+    text-decoration: underline;
+}

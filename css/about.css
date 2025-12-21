@@ -1,0 +1,26 @@
+main {
+    text-align: center;
+    color: white;
+}
+
+div.about section h2, div.contact section h2 {
+    font-size: 60px;
+    font-weight: bold;
+    color: rgb(204, 153, 255);
+}
+
+div.about p, div.contact p, div.contact h2 {
+    margin-left: 10%;
+    padding: 15px;
+    width: 80%;
+    font-size: 30px;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+div.smallimg img {
+    width: 350px;
+    height: 250px;
+}

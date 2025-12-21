@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+}
+
+.menu {
+    position: relative;
+    height: 100px;
+    background: rgb(51,0,102);
+}
+
+.menu_row {
+    display: flex;
+    padding: 28px;
+    position: relative;
+    gap: 50px;
+}
+
+.menu li{
+    list-style-type: none;
+
+}
+
+.menu_row h1{
+    font-size: xx-large;
+    color: aliceblue;
+}
+
+.menu_row img{
+    position: relative;
+    margin-right:0px;  
+    height: 50px;
+    margin-top: -5px;
+    background: transparent;
+}
+
+body{
+    background-color: rgb(204, 153, 255);
+}
+
+.checkout {
+    margin-left: 120px;
+}
+
+/* Address CSS */
+
+.addressbook {
+    display: grid;
+    grid: auto / auto auto auto;
+    gap: 5px;
+    place-content: start;
+    font-size: xx-large;
+    margin-top: 10px;
+}
+
+select, button {
+    font-size: x-large;
+    padding: 10px;
+}
+
+.payment_method select {
+    font-size: x-large;
+}
+
+/* Checkout Cart details */
+
+.order_details hr {
+    width: 96%;
+}
+
+table {
+    margin-left: -60px;
+}
+
+.order_details th, .order_details td {
+    width: 10%;
+    font-size: x-large;
+    display: center;
+}
+
+.order_details td {
+    width: 10%;
+    padding: 30px;
+    text-align: center;
+}
+
+.err {
+    color: red;
+}
+
+/* Address readonly */
+
+.address label, .address input {
+    font-size: x-large;
+}
+
+/* Payment */
+
+.payment_info {
+    display: grid;
+    grid: auto / auto auto auto;
+    gap: 5px;
+    place-content: start;
+    font-size: large;
+    margin-top: 10px;
+}
+
+.payment_info > label:not(:has(*)) {
+    place-self: stretch;
+    background: #ccc;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.payment_info select, .payment_info input, .payment_info button {
+    font-size: x-large;
+}

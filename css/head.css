@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+}
+
+/*Top Seller*/
+.top_seller{
+    background: white;
+    padding: 10px 10px;
+    text-align: center;
+    position: relative;
+    transition: 0.5;
+}
+
+.top_seller h2{
+    font-size: 70px;
+    color: #b2a5ff;
+    font-weight: bold;
+    text-align: center;
+}
+
+#info {
+    position: fixed;
+    color: #fff;
+    background: #666;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px 20px;
+    left: 50%;
+    translate: -50% 0;
+    z-index: 999;
+
+    top: -100px;
+    opacity: 0;
+}
+
+#info:not(:empty) {
+    animation: fade 5s;
+}
+
+@keyframes fade {
+      0% { top: -100px; opacity: 0; }
+     10% { top:  100px; opacity: 1; }
+     90% { top:  100px; opacity: 1; }
+    100% { top: -100px; opacity: 0; }
+}
+
+
+

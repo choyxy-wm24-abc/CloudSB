@@ -1,0 +1,63 @@
+#info:not(:empty) {
+    animation: fade 5s;
+}
+
+@keyframes fade {
+      0% { top: -100px; opacity: 0; }
+     10% { top:  100px; opacity: 1; }
+     90% { top:  100px; opacity: 1; }
+    100% { top: -100px; opacity: 0; }
+}
+
+.login, .signup{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    border-radius: 130px;
+}
+
+.login table, .signup table{
+    border-collapse: separate;
+    border-spacing: 30px, 30px;
+}
+
+.login tr, .signup tr{
+    padding: 30px;
+}
+
+.login th, .signup th{
+    border-spacing: 60px, 60px;
+    padding: 50px;
+    background: rgb(217, 140, 235);
+    text-align:left;
+}
+
+.login h1, .signup h1{
+    text-align: center;
+}
+
+.err{
+    color: red;
+}
+
+.gender{
+    display: inline-block; /* Aligns the radio buttons inline */
+    margin-left: 10px;}
+
+button{
+    font-size: 25px;
+}
+.login form, .signup form{
+    font-size: larger;
+}
+
+label.upload img {
+    display: block;
+    border: 1px solid #333;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    margin-left: 160px;
+}
