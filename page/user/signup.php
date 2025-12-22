@@ -100,79 +100,187 @@ if (is_post())  {
     
 }
 
+$_title = 'User | Sign Up';
 ?>
 
-<link rel="stylesheet" href="../../css/menu.css">
-<link rel="stylesheet" href="../../css/allbackgroundimg.css">
-<link rel="stylesheet" href="../../css/login_signup.css">
+<link rel="stylesheet" href="/css/signup-modern.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="javascript/app.js"></script>
+<!-- Hero Section -->
+<section class="signup-hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="back-navigation">
+                <button onclick="window.location.href='../../index.php'" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+                    </svg>
+                    <span>Back to Home</span>
+                </button>
+            </div>
+            <h1 class="hero-title">
+                <span class="brand-highlight">Join Us Today</span>
+            </h1>
+            <p class="hero-subtitle">Create your account to get started</p>
+        </div>
+    </div>
+</section>
 
-<div class="signup">
-    <table>
-        <th>
-            <h1>Sign Up</h1>
-            <h2>Fill in the information below to create an account</h2>
-            <form method="post" class="form" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <?= html_text('username') ?>
-                    <?= err('username') ?>
-                </div>
-
-                <div class="form-group">
-                    <label>Gender:</label>
-                    <div class="radio-group">
-                        <?= html_radios('gender', $_genders) ?>
+<!-- Signup Section -->
+<section class="signup-section">
+    <div class="section-container">
+        <div class="signup-content">
+            <div class="signup-card">
+                <div class="card-header">
+                    <div class="signup-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"/>
+                        </svg>
                     </div>
-                    <?= err('gender') ?>
+                    <h2 class="section-title">Create Account</h2>
+                    <p class="section-description">
+                        Fill in your information to create your account
+                    </p>
                 </div>
-
-                <div class="form-group">
-                    <label for="age">Age:</label>
-                    <?= html_text('age', 'type="number" min="13" max="100"') ?>
-                    <?= err('age') ?>
-                    <small>You must be at least 13 years old to register</small>
+                
+                <form method="post" class="signup-form" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                                </svg>
+                                Username
+                            </label>
+                            <div class="input-wrapper">
+                                <?= html_text('username', 'placeholder="Enter your username"') ?>
+                                <?= err('username') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9,12A3,3 0 0,0 12,9A3,3 0 0,0 15,12A3,3 0 0,0 12,15A3,3 0 0,0 9,12M12,20L16.95,15.05C17.92,14.08 18.5,12.77 18.5,11.36C18.5,9.15 16.85,7.5 14.64,7.5A4.14,4.14 0 0,0 12,8.5A4.14,4.14 0 0,0 9.36,7.5C7.15,7.5 5.5,9.15 5.5,11.36C5.5,12.77 6.08,14.08 7.05,15.05L12,20Z"/>
+                                </svg>
+                                Age
+                            </label>
+                            <div class="input-wrapper">
+                                <?= html_text('age', 'type="number" min="13" max="100" placeholder="Enter your age"') ?>
+                                <?= err('age') ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="field-label">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                            </svg>
+                            Gender
+                        </label>
+                        <div class="radio-wrapper">
+                            <?= html_radios('gender', $_genders) ?>
+                            <?= err('gender') ?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="field-label">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,5.11 21.1,4 20,4Z"/>
+                            </svg>
+                            Email Address
+                        </label>
+                        <div class="input-wrapper">
+                            <?= html_text('email', 'type="email" placeholder="Enter your email address"') ?>
+                            <?= err('email') ?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="photo" class="field-label">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9,2V7.38L10.5,8.88L12,7.38V2H9M15,7.38V2H12V7.38L13.5,8.88L15,7.38M9,10.62L7.5,9.12L2,14.62V17.62H7.5L9,16.12V10.62M15,10.62V16.12L16.5,17.62H22V14.62L16.5,9.12L15,10.62Z"/>
+                            </svg>
+                            Profile Photo
+                        </label>
+                        <div class="photo-upload-wrapper">
+                            <label class="photo-upload" tabindex="0">
+                                <?= html_file('photo', 'image/*', 'hidden') ?>
+                                <img id="preview" src="../../photos/photo.jpg" alt="Preview">
+                                <div class="upload-overlay">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                    </svg>
+                                    <span>Click to upload</span>
+                                </div>
+                            </label>
+                            <?= err('photo') ?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
+                                </svg>
+                                Password
+                            </label>
+                            <div class="input-wrapper">
+                                <?= html_password('password', 'placeholder="Enter your password"') ?>
+                                <?= err('password') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm_password" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
+                                </svg>
+                                Confirm Password
+                            </label>
+                            <div class="input-wrapper">
+                                <?= html_password('confirm_password', 'placeholder="Confirm your password"') ?>
+                                <?= err('confirm_password') ?>
+                                <?= err('password_notmatched') ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="password-requirements">
+                        <h4>Password Requirements:</h4>
+                        <ul>
+                            <li>8-12 characters long</li>
+                            <li>At least one letter</li>
+                            <li>At least one number</li>
+                            <li>At least one special character (@$!%*?&)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"/>
+                            </svg>
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="additional-actions">
+                    <p class="help-text">Already have an account?</p>
+                    <a href="login.php" class="login-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z"/>
+                        </svg>
+                        Sign In Instead
+                    </a>
                 </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <?= html_text('email', 'type="email"') ?>
-                    <?= err('email') ?>
-                </div>
-
-                <div class="form-group">
-                    <label for="photo">Photo:</label>
-                    <label class="upload" tabindex="0">
-                        <?= html_file('photo', 'image/*', 'hidden') ?>                    
-                        <img id="preview" src="../../photos/photo.jpg" alt="Preview">
-                    </label>
-                    <?= err('photo') ?>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <?= html_password('password') ?>
-                    <?= err('password') ?>
-                    <small>Password must be 8-12 characters with letters, numbers, and special characters (@$!%*?&)</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirm_password">Confirm Password:</label>
-                    <?= html_password('confirm_password') ?>
-                    <?= err('confirm_password') ?>
-                    <?= err('password_notmatched') ?>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn">Sign Up</button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='../../index.php'">Back to Home</button>
-                </div>
-            </form>
-        </th>
-    </table>
-</div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
 document.getElementById('photo').addEventListener('change', function (e) {
