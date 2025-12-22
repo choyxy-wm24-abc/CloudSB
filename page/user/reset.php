@@ -44,27 +44,46 @@ if (is_post()) {
         $m = new stdClass();
         $m = get_mail();
         $m->addAddress($u->email, $u->username);
-        $m->addEmbeddedImage("../../photos/$u->photo", 'photo');
+        
+        // Check if photo exists before embedding
+        $photoPath = "../../photos/$u->photo";
+        $photoExists = file_exists($photoPath) && !empty($u->photo);
+        
+        if ($photoExists) {
+            $m->addEmbeddedImage($photoPath, 'photo');
+            $photoHtml = "<img src='cid:photo' style='width: 200px; height: 200px; border: 1px solid #333; border-radius: 10px; margin-bottom: 20px;'>";
+        } else {
+            // Use a default placeholder or no image
+            $photoHtml = "<div style='width: 200px; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px; margin-bottom: 20px;'>👤</div>";
+        }
+        
         $m->isHTML(true);
         $m->Subject = "Reset password";
         $m->Body = "
-            <img src='cid:photo'
-                 style='width: 200px; height: 200px;
-                        border: 1px solid #333'>
-            <p>Dear $u->username,<p>
-            <h1 style='color: red'>Request for Reset Password</h1>
-            <p>
-                Your password can be reset through the url below.
-            </p>
-            <p>
-                <a href='$url'>$url</a>
-            </p>
-            <p>
-                Please click on the url to reset your password asap.
-            </p>
-            <h2 style='font-style: italic; color: blue'>If you DID NOT request for password reset, 
-            please IGNORE this message, your password will REMAIN UNCHANGE.</h2>
-            <p>From, CTRL + EAT Admin</p>
+            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;'>
+                <div style='text-align: center; margin-bottom: 30px;'>
+                    $photoHtml
+                </div>
+                <p style='font-size: 16px; color: #333;'>Dear $u->username,</p>
+                <h1 style='color: #667eea; text-align: center; margin: 30px 0;'>Request for Reset Password</h1>
+                <p style='font-size: 16px; color: #555; line-height: 1.6;'>
+                    Your password can be reset through the link below.
+                </p>
+                <div style='text-align: center; margin: 30px 0;'>
+                    <a href='$url' style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;'>Reset Password</a>
+                </div>
+                <p style='font-size: 16px; color: #555; line-height: 1.6;'>
+                    Please click on the button above to reset your password as soon as possible.
+                </p>
+                <div style='background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 30px 0; border-left: 4px solid #ffc107;'>
+                    <h3 style='color: #856404; margin-top: 0;'>Important Security Notice</h3>
+                    <p style='color: #856404; margin-bottom: 0;'>If you DID NOT request for password reset, please IGNORE this message. Your password will REMAIN UNCHANGED.</p>
+                </div>
+                <p style='font-size: 14px; color: #888; text-align: center; margin-top: 40px;'>
+                    From, CTRL + EAT Admin<br>
+                    <small>This link will expire in 5 minutes for security purposes.</small>
+                </p>
+            </div>
         ";
         $m->send();
 
