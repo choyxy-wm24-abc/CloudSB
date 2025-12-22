@@ -146,12 +146,12 @@ if (is_post()) { // form sumbitted check
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="javascript/app.js"></script>
 
-<div class="login">
-    <table>
-        <th>
-            <h1>Edit Product Details</h1>
-            <h2>Update product information below</h2>
-            <form method="post" class="form" enctype="multipart/form-data">
+<div class="admin-product-form">
+    <div class="form-container-large">
+        <h1>Edit Product Details</h1>
+        <h2>Update product information below</h2>
+        <form method="post" class="form-large" enctype="multipart/form-data">
+            <div class="form-row">
                 <div class="form-group">
                     <label for="product_name">Product Name:</label>
                     <?= html_text('product_name') ?>
@@ -163,13 +163,15 @@ if (is_post()) { // form sumbitted check
                     <?= html_text('flavour') ?>
                     <?= err('flavour') ?>
                 </div>
-                
-                <div class="form-group">
-                    <label for="details">Details:</label>
-                    <?= html_textarea('details', 'rows="4"') ?>
-                    <?= err('details') ?>
-                </div>
-                
+            </div>
+            
+            <div class="form-group">
+                <label for="details">Details:</label>
+                <?= html_textarea('details', 'rows="6"') ?>
+                <?= err('details') ?>
+            </div>
+            
+            <div class="form-row">
                 <div class="form-group">
                     <label for="price">Price (RM):</label>
                     <?= html_text('price', 'type="number" step="0.01" min="0"') ?>
@@ -177,18 +179,20 @@ if (is_post()) { // form sumbitted check
                 </div>
                 
                 <div class="form-group">
+                    <label for="category_id">Category ID:</label>
+                    <?= html_text('category_id', 'type="number" min="1"') ?>
+                    <?= err('category_id') ?>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
                     <label for="image">Product Image:</label>
-                    <label class="upload" tabindex="0">
+                    <label class="upload-large" tabindex="0">
                         <?= html_file('image', 'image/*', 'hidden') ?>     
                         <img id="preview" src="/image/<?= $image ?>" alt="Product Image">               
                     </label>
                     <?= err('image') ?>
-                </div>
-
-                <div class="form-group">
-                    <label for="category_id">Category ID:</label>
-                    <?= html_text('category_id', 'type="number" min="1"') ?>
-                    <?= err('category_id') ?>
                 </div>
 
                 <div class="form-group">
@@ -198,15 +202,15 @@ if (is_post()) { // form sumbitted check
                     </div>
                     <?= err('status') ?>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn">Update Product</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='product.php'">Back to Products</button>
-                </div>
-            </form>
-        </th>
-    </table>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Update Product</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='product.php'">Back to Products</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <script>
