@@ -77,12 +77,17 @@ const userChart = new Chart(document.getElementById('userChart'), {
         datasets: [{
             label: 'Orders',
             data: <?= json_encode(array_column($top_users, 'total_orders')) ?>,
-            backgroundColor: '#6a11cb'
+            backgroundColor: '#0077be',
+            borderColor: '#00a8e8',
+            borderWidth: 2
         }]
     },
     options: {
         responsive: true,
-        plugins: { legend: { display: false } }
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true }
+        }
     }
 });
 
@@ -93,12 +98,17 @@ const productChart = new Chart(document.getElementById('productChart'), {
         datasets: [{
             label: 'Quantity Sold',
             data: <?= json_encode(array_column($top_products, 'total_quantity')) ?>,
-            backgroundColor: '#2575fc'
+            backgroundColor: '#00a8e8',
+            borderColor: '#0077be',
+            borderWidth: 2
         }]
     },
     options: {
         responsive: true,
-        plugins: { legend: { display: false } }
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true }
+        }
     }
 });
 
@@ -109,12 +119,17 @@ const orderChart = new Chart(document.getElementById('orderChart'), {
         datasets: [{
             label: 'Total Price (RM)',
             data: <?= json_encode(array_column($top_orders, 'tprice')) ?>,
-            backgroundColor: '#ff6a00'
+            backgroundColor: '#4fc3f7',
+            borderColor: '#0077be',
+            borderWidth: 2
         }]
     },
     options: {
         responsive: true,
-        plugins: { legend: { display: false } }
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true }
+        }
     }
 });
 </script>

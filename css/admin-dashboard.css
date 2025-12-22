@@ -2,12 +2,14 @@
     display: flex;
     justify-content: center;
     margin-top: 50px;
+    background: transparent !important;
 }
 
 .admin-cards {
     display: flex;
     gap: 30px; /* space between buttons */
     flex-wrap: wrap;
+    background: transparent !important;
 }
 
 .admin-card {
@@ -39,24 +41,30 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 50px;
+    background: transparent !important;
 }
 
 .chart-card {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,119,190,0.15);
     padding: 20px;
     width: 350px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .chart-card:hover {
     transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 30px rgba(0,119,190,0.2);
 }
 
 .chart-card h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #0077be;
     font-size: 1.3rem;
+    font-weight: 600;
 }
