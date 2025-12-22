@@ -19,13 +19,14 @@
 }
 
 .login table, .signup table{
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 50px rgba(0,119,190,0.2);
     overflow: hidden;
     border-collapse: separate;
     border-spacing: 0;
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .login tr, .signup tr{
@@ -33,9 +34,9 @@
 }
 
 .login th, .signup th{
-    padding: 30px 40px;
-    background: linear-gradient(135deg, rgba(0, 119, 190, 0.1) 0%, rgba(0, 168, 232, 0.1) 100%);
-    text-align: left;
+    padding: 40px;
+    background: transparent;
+    text-align: center;
     border: none;
     font-weight: 600;
     color: #333;
@@ -44,6 +45,19 @@
 .login td, .signup td {
     padding: 20px 40px;
     border: none;
+}
+
+.login h2, .signup h2 {
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.login .form-group, .signup .form-group {
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .login input, .signup input {
@@ -144,4 +158,106 @@ label.upload img:hover {
     border-color: #00a8e8;
     transform: scale(1.05);
     box-shadow: 0 5px 20px rgba(0, 119, 190, 0.2);
+}
+
+
+/* Additional form styling for better UX */
+.login .form-group label,
+.signup .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.login .form-group small,
+.signup .form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Button styling within forms */
+.login button,
+.signup button {
+    min-width: 120px;
+}
+
+.login .btn-secondary,
+.signup .btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.login .btn-secondary:hover,
+.signup .btn-secondary:hover {
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+/* Radio group styling for forms */
+.login .radio-group,
+.signup .radio-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.login .radio-group label,
+.signup .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* Error message styling */
+.login .err,
+.signup .err {
+    display: block;
+    margin-top: 5px;
+}
+
+/* Upload image preview styling */
+.login .upload img,
+.signup .upload img {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+/* Form group last child (buttons) */
+.login .form-group:last-child,
+.signup .form-group:last-child {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login table, .signup table {
+        width: 95%;
+        margin: 20px auto;
+    }
+    
+    .login th, .signup th {
+        padding: 30px 20px;
+    }
+    
+    .login .form-group:last-child,
+    .signup .form-group:last-child {
+        flex-direction: column;
+    }
+    
+    .login button,
+    .signup button {
+        width: 100%;
+    }
 }

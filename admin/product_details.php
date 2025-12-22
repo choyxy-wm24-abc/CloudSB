@@ -87,7 +87,7 @@ if (is_post()) { // form sumbitted check
         $_err['price'] = 'Price must be a number';
     }
     else if ($price <= 0) {
-        $_err['price'] = 'Price cannot be 0 or less than';
+        $_err['price'] = 'Price cannot be 0 or less than';
     }
     
     // Validate: photo (file)
@@ -141,59 +141,73 @@ if (is_post()) { // form sumbitted check
 
 ?>
 <link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/login_signup.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="javascript/app.js"></script>
 
-<style>
-    div.status {
-        color: white;
-    }
-</style>
+<div class="login">
+    <table>
+        <th>
+            <h1>Edit Product Details</h1>
+            <h2>Update product information below</h2>
+            <form method="post" class="form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="product_name">Product Name:</label>
+                    <?= html_text('product_name') ?>
+                    <?= err('product_name') ?>
+                </div>
+                
+                <div class="form-group">
+                    <label for="flavour">Flavour:</label>
+                    <?= html_text('flavour') ?>
+                    <?= err('flavour') ?>
+                </div>
+                
+                <div class="form-group">
+                    <label for="details">Details:</label>
+                    <?= html_textarea('details', 'rows="4"') ?>
+                    <?= err('details') ?>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Price (RM):</label>
+                    <?= html_text('price', 'type="number" step="0.01" min="0"') ?>
+                    <?= err('price') ?>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">Product Image:</label>
+                    <label class="upload" tabindex="0">
+                        <?= html_file('image', 'image/*', 'hidden') ?>     
+                        <img id="preview" src="/image/<?= $image ?>" alt="Product Image">               
+                    </label>
+                    <?= err('image') ?>
+                </div>
 
-<main>
-    <div class="profile">
-        <form method="post" class="form" enctype="multipart/form-data">
-            <label for="product_name">Product Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-            <?= html_text('product_name') ?>
-            <?= err('product_name') ?><br>
-            
-            <label for="flavour">Flavour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-            <?= html_text('flavour') ?>
-            <?= err('flavour') ?><br>
-            
-            <label for="details">Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-            <?= html_textarea('details') ?>
-            <?= err('details') ?><br>
-            
-            <label for="price">Price&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-            <?= html_text('price') ?>
-            <?= err('price') ?><br>
-            
-            <label for="image">Product Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-            <label class="upload" tabindex="0">
-                <?= html_file('image', 'image/*', 'hidden') ?>     
-                <img id="preview" src="/image/<?= $image ?>">               
-            </label>
-            <?= err('image') ?><br>
+                <div class="form-group">
+                    <label for="category_id">Category ID:</label>
+                    <?= html_text('category_id', 'type="number" min="1"') ?>
+                    <?= err('category_id') ?>
+                </div>
 
-            <label for="category_id">Category ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-            <?= html_text('category_id') ?>
-            <?= err('category_id') ?><br>
+                <div class="form-group">
+                    <label>Status:</label>
+                    <div class="radio-group">
+                        <?= html_radios('status', $_status) ?>
+                    </div>
+                    <?= err('status') ?>
+                </div>
 
-            <label>Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-            <div class="status">
-                <?= html_radios('status', $_status) ?>
-            </div>
-            <?= err('status') ?><br>
-
-            <section>
-                <button>Submit</button>
-                <button type="reset">Reset</button>
-            </section>
-        </form>
-    </div>
-</main>
+                <div class="form-group">
+                    <button type="submit" class="btn">Update Product</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='product.php'">Back to Products</button>
+                </div>
+            </form>
+        </th>
+    </table>
+</div>
 
 <script>
 document.getElementById('image').addEventListener('change', function (e) {

@@ -37,12 +37,7 @@ if (is_post()) {
     }
 }
 
-
 ?>
-
-<div class="background">
-    <img src="/icon/background1.jpg" alt="Our background image">
-</div>
 
 <title>Login</title>
 <link rel="stylesheet" href="../../css/menu.css">
@@ -54,22 +49,31 @@ if (is_post()) {
     <table>
         <th>
             <h1>Log In</h1>
-            <h1>-------------------------------------------</h1>
-            <h2>Please Login to your account to proceed</h2><br>
+            <h2>Please login to your account to proceed</h2>
             <form method="post" class="form">
-                <label for="username">Username :</label>
-                <?= html_text('username') ?>
-                <?= err('username') ?>
-                <br><br>
-                <label for="password">Password  :</label>
-                <?= html_password('password') ?>
-                <?= err('password')?>
-                <?= err('invalid')?>
-                <?= err('inactive')?>
-                <h5><a href="reset.php">Forgot password?</a></h5>
-                <h5>Haven get an account? <a href="signup.php">Sign Up</a> now.</h5>
-                <button>Enter</button>
-                <button type="button" onclick="window.location.href='../../index.php'">Back to Home</button>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <?= html_text('username') ?>
+                    <?= err('username') ?>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <?= html_password('password') ?>
+                    <?= err('password')?>
+                    <?= err('invalid')?>
+                    <?= err('inactive')?>
+                </div>
+                
+                <div class="form-group">
+                    <p><a href="reset.php" style="color: #0077be; text-decoration: none;">Forgot password?</a></p>
+                    <p>Don't have an account? <a href="signup.php" style="color: #0077be; text-decoration: none;">Sign Up</a> now.</p>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn">Log In</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='../../index.php'">Back to Home</button>
+                </div>
             </form> 
         </th>
     </table>

@@ -33,6 +33,10 @@ if (is_post())  {
     //age validation
     if($age == ''){
         $_err['age'] = 'Required';
+    }else if (!is_numeric($age)) {
+        $_err['age'] = 'Age must be a number';
+    }else if ($age < 13) {
+        $_err['age'] = 'You must be at least 13 years old to register';
     }else if ($age > 100) {
         $_err['age'] = 'Age invalid, please enter a valid age';
     }
@@ -57,10 +61,14 @@ if (is_post())  {
         $_err['photo'] = 'Maximum 1MB';
     }
 
-    //password
+    //password validation
     if ($password == ''){
         $_err['password'] = 'Please enter your password';
-    } 
+    } else if (strlen($password) < 8 || strlen($password) > 12) {
+        $_err['password'] = 'Password must be between 8-12 characters';
+    } else if (!preg_match('/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/', $password)) {
+        $_err['password'] = 'Password must contain at least one letter, one number, and one special character (@$!%*?&)';
+    }
 
     //password confirmation
     if ($confirm_password == ''){
@@ -68,9 +76,6 @@ if (is_post())  {
     }
     else if ($password !== $confirm_password) {
         $_err['password_notmatched'] = 'Password Not Matched';
-    }
-    else if (strlen($confirm_password) < 8 || strlen($confirm_password) > 100) {
-        $_err['confirm_password'] = 'Between 8-100 characters';
     }
 
     // Generate user ID
@@ -104,60 +109,66 @@ if (is_post())  {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="javascript/app.js"></script>
 
-<div class="background">
-    <img src="/icon/background1.jpg" alt="Our background image">
-</div>
-
 <div class="signup">
     <table>
         <th>
             <h1>Sign Up</h1>
-            <h1>-------------------------------------------------</h1>
-            <h2>Fill in the informations below for create an account</h2>
+            <h2>Fill in the information below to create an account</h2>
             <form method="post" class="form" enctype="multipart/form-data">
-                <label for="username">Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-                <?= html_text('username') ?>
-                <?= err('username') ?>
-                <br><br>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <?= html_text('username') ?>
+                    <?= err('username') ?>
+                </div>
 
-                <label>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-                    <div class="gender">
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <div class="radio-group">
                         <?= html_radios('gender', $_genders) ?>
                     </div>
-                <?= err('gender') ?>
-                <br><br>
+                    <?= err('gender') ?>
+                </div>
 
-                <label for="age">Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-                <?= html_text('age') ?>
-                <?= err('age') ?>
-                <br><br>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <?= html_text('age', 'type="number" min="13" max="100"') ?>
+                    <?= err('age') ?>
+                    <small>You must be at least 13 years old to register</small>
+                </div>
 
-                <label for="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-                <?= html_text('email') ?>
-                <?= err('email') ?>
-                <br><br>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <?= html_text('email', 'type="email"') ?>
+                    <?= err('email') ?>
+                </div>
 
-                <label for="photo">Photo:</label>
-                <label class="upload" tabindex="0">
-                <?= html_file('photo', 'image/*', 'hidden') ?> 
-                <?= err('photo') ?>                   
-                <img id="preview" src="../../photos/photo.jpg" alt="Preview">
-                </label>
-                <br>
+                <div class="form-group">
+                    <label for="photo">Photo:</label>
+                    <label class="upload" tabindex="0">
+                        <?= html_file('photo', 'image/*', 'hidden') ?>                    
+                        <img id="preview" src="../../photos/photo.jpg" alt="Preview">
+                    </label>
+                    <?= err('photo') ?>
+                </div>
 
-                <label for="password">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-                <?= html_password('password') ?>
-                <?= err('password') ?>
-                <br><br>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <?= html_password('password') ?>
+                    <?= err('password') ?>
+                    <small>Password must be 8-12 characters with letters, numbers, and special characters (@$!%*?&)</small>
+                </div>
 
-                <label for="confirm_password">Confirm Password :</label>
-                <?= html_password('confirm_password') ?>
-                <?= err('confirm_password') ?>
-                <?= err('password_notmatched') ?>
-                <br><br>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <?= html_password('confirm_password') ?>
+                    <?= err('confirm_password') ?>
+                    <?= err('password_notmatched') ?>
+                </div>
 
-                <button>Sign Up</button>
-                <button type="button" onclick="window.location.href='../../index.php'">Back to Home</button>
+                <div class="form-group">
+                    <button type="submit" class="btn">Sign Up</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='../../index.php'">Back to Home</button>
+                </div>
             </form>
         </th>
     </table>
@@ -172,6 +183,44 @@ document.getElementById('photo').addEventListener('change', function (e) {
             document.getElementById('preview').src = event.target.result;
         };
         reader.readAsDataURL(file);
+    }
+});
+
+// Real-time password validation
+document.getElementById('password').addEventListener('input', function(e) {
+    const password = e.target.value;
+    const feedback = document.createElement('div');
+    feedback.className = 'password-feedback';
+    
+    // Remove existing feedback
+    const existing = e.target.parentNode.querySelector('.password-feedback');
+    if (existing) existing.remove();
+    
+    if (password.length > 0) {
+        let messages = [];
+        
+        if (password.length < 8 || password.length > 12) {
+            messages.push('8-12 characters required');
+        }
+        if (!/[a-zA-Z]/.test(password)) {
+            messages.push('At least one letter required');
+        }
+        if (!/\d/.test(password)) {
+            messages.push('At least one number required');
+        }
+        if (!/[@$!%*?&]/.test(password)) {
+            messages.push('At least one special character (@$!%*?&) required');
+        }
+        
+        if (messages.length > 0) {
+            feedback.innerHTML = '<small style="color: #e74c3c;">• ' + messages.join('<br>• ') + '</small>';
+            feedback.style.marginTop = '5px';
+            e.target.parentNode.appendChild(feedback);
+        } else {
+            feedback.innerHTML = '<small style="color: #27ae60;">✓ Password meets all requirements</small>';
+            feedback.style.marginTop = '5px';
+            e.target.parentNode.appendChild(feedback);
+        }
     }
 });
 </script>
