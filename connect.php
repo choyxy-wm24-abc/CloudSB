@@ -7,7 +7,7 @@ date_default_timezone_set('Asia/Kuala_Lumpur');
 
 try {
     $_db = new PDO(
-        "mysql:host=dbinstance.cjyea2y6ganc.us-east-1.rds.amazonaws.com;port=3306;dbname=dbinstance;charset=utf8mb4",
+        "mysql:host=dbinstance.c0hv042dsohi.us-east-1.rds.amazonaws.com;port=3306;dbname=dbinstance;charset=utf8mb4",
         "admin",
         "food1234",
         [
@@ -17,6 +17,5 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    // Avoid displaying sensitive info in production
-    die("Database connection failed.");
+    die("Database connection failed: " . $e->getMessage());
 }
