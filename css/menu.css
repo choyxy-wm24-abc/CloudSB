@@ -1,37 +1,60 @@
 .menu_bar {
     display: flex;
-    height: 100px;
-    background: rgb(51,0,102);
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    align-items: center;
+    padding: 0 20px;
 }
 
 .menu_icon {
     display: flex;
     align-items: center;
-    margin-right: 50px;
-    background: transparent; /* Ensure the background is transparent */
+    margin-right: 30px;
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+
+.menu_icon:hover {
+    transform: scale(1.1);
 }
 
 .menu_icon img {
-    height: 50px;
-    margin: 0;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
 }
 
 .menu_icon a {
     align-items: center;
     display: flex;
-    transform: translateX(40px);
+    transform: translateX(20px);
 }
 
 .menu_store_name {
     display: flex;
     align-items: center;
-    margin-left: 10px;
-    margin: 0;
-    margin-right: 50px;
+    margin-right: 40px;
 }
 
-.menu_store_name  {
-    color: rgb(204, 153, 255);
+.menu_store_name h1 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+}
+
+.menu_store_name span {
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .menu_nav {
@@ -39,34 +62,59 @@
     text-align: center;
     position: relative;
     justify-content: center;
-    flex-grow: 0.2;
-    transform: translateY(30px);
+    flex-grow: 1;
+    align-items: center;
 }
 
 .menu_nav ul {
     display: flex;
-    margin-left: -40px;
-    border-spacing: -30px;
+    align-items: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
 }
 
 .menu_nav ul li {
     list-style-type: none;
-    margin-right: 100px;
-}
-
-.menu_nav ul li:last-child {
-    margin-right: 0;
+    position: relative;
 }
 
 .menu_nav ul > li {
     display: flex;
-    font-size: 23px;
+    align-items: center;
+    font-size: 1.1rem;
     text-decoration: none;
     color: white;
+    font-weight: 500;
+}
+
+.menu_nav ul li a {
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu_nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.menu_nav ul li a:hover::before {
+    left: 100%;
 }
 
 .menu_nav ul li a:hover {
-    font-weight: bold;
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .shopnow h1 a, .about h1 a{
@@ -76,42 +124,60 @@
 
 .dropdown {
     position: relative;
-    font-size: 140%;
+    font-size: 1.1rem;
 }
 
 .dropdown h1 {
-    font-weight: lighter;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.dropdown:hover h1 {
+    background: rgba(255,255,255,0.1);
 }
 
 .dropdown_menu {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     visibility: hidden;
     position: absolute;
-    background-color: white;
-    padding: 5px 0;
-    box-shadow: 0px 2px 4px;
-    color:black;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    padding: 8px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    color: #333;
     width: 180px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    top: 100%;
+    right: 0;
 }
 
 .dropdown_menu li {
-    padding: 5px 10px;
+    padding: 0;
     display: block;
     width: 100%;
 }
 
 .dropdown_menu li a {
-    color: black !important;
-    font-size: 20px !important;
+    color: #333 !important;
+    font-size: 0.95rem !important;
     text-decoration: none;
     display: block;
-    padding: 5px;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 2px 8px;
 }
 
 .dropdown_menu li a:hover {
-    background-color: rgb(200, 200, 200);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    transform: translateX(4px);
 }
 
 .dropdown:hover .dropdown_menu {
@@ -121,27 +187,64 @@
     visibility: visible;
 }
 
+.cart {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.cart:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
 .cart img{
-    position: absolute;
-    margin-right:0px;  
-    height: 50px;
-    margin-top: -5px;
-    background: transparent;
+    height: 24px;
+    width: 24px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.history {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.history:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
 }
 
 .history img{
-    position: absolute;
-    margin-right:0px;  
-    height: 80px;
-    margin-top: -17px;
-    background: transparent;
+    height: 28px;
+    width: 28px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.order_history {
+    font-weight: 500;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    text-align: center;
+    color: white;
 }
 
 .search_bar {
     display: flex;
     align-items: center;
-    top: 10;
-    left: 550px;
+    gap: 10px;
 }
 
 .search_bar input {
@@ -149,29 +252,62 @@
     height: 40px;
     border-radius: 20px;
     outline: none;
-    font-size: 20px;
-    padding: 5px 40px;
-    border: 1px solid;
+    font-size: 16px;
+    padding: 8px 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.search_bar input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.search_bar input:focus {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.02);
 }
 
 .search_bar #search_logo {
-    margin-left: -45px;
-    margin-top: -3px;
-    left: 10px;
     cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.search_bar #search_logo:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.1);
+}
+
+.photo {
+    margin-left: 20px;
 }
 
 .photo img {
-    margin-top: -10px;
-    width: 60px;
-    height: 60px;
-    border: 1px solid #333;
-    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.photo img:hover {
+    border-color: rgba(255,255,255,0.6);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 .username {
-    font-size: 18px;
-    padding: 10px;
-    color: aliceblue;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    margin-right: 10px;
 }
 

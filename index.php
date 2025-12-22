@@ -67,12 +67,14 @@ ini_set('display_startup_errors', 1);
             <?php if ($user): ?>
                 <a href="./page/purchase/product.php?user_id=<?= $user->user_id ?>&p_id=<?= $t->product_id ?>" class="product-cell">
             <?php else: ?>
-                <a href="page/user/login.php" style="text-decoration: none;">
+                <a href="page/user/login.php" class="product-cell">
             <?php endif ?>
-                <img src="./image/<?= $t->image ?>" alt="product_img">
-                <h2><?= $t->product_name ?></h2><br>
-                <p><?= $t->flavour ?></p><br>
-                <h3>RM <?= $t->price ?></h3>
+                <img src="./image/<?= $t->image ?>" alt="<?= $t->product_name ?>">
+                <div class="product-info">
+                    <h2><?= $t->product_name ?></h2>
+                    <p><?= $t->flavour ?></p>
+                    <h3>RM <?= $t->price ?></h3>
+                </div>
             </a>
         </div>
     <?php endforeach; ?>  

@@ -21,6 +21,7 @@ $product_search = req('product_search');
     <link rel="shortcut icon" href="/image/teddy-bear.png">
     <link rel="stylesheet" href="/css/head.css">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/modern-enhancements.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="javascript/app.js"></script>
 </head>

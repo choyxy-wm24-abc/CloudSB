@@ -1,90 +1,167 @@
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .menu {
     position: relative;
-    height: 100px;
-    background: rgb(51,0,102);
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
 .menu_row {
     display: flex;
-    padding: 28px;
+    padding: 20px 30px;
     position: relative;
-    gap: 50px;
+    gap: 40px;
+    align-items: center;
 }
 
 .menu li{
     list-style-type: none;
-
 }
 
 .menu_row h1{
-    font-size: xx-large;
-    color: aliceblue;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .menu_row img{
-    position: relative;
-    margin-right:0px;  
-    height: 50px;
-    margin-top: -5px;
-    background: transparent;
+    height: 30px;
+    width: 30px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
 }
 
 body{
-    background-color: rgb(204, 153, 255);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .shopping_cart {
-    margin-left: 70px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 .shopping_cart hr {
-    width: 96%;
-    height: 3px;
-    background-color: rgb(51,0,102);
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 2px;
+    margin: 20px 0;
 }
 
 h1.product_cart {
     text-align: center;
-}
-
-.product_cart h1 {
-    margin-top: 15px;
-
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 30px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .shopping_cart table {
-    margin-left: -100px;
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-collapse: collapse;
 }
 
-.shopping_cart th, .shopping_cart td {
-    width: 10%;
-    font-size: x-large;
-    display: center;
-}
-
-.shopping_cart td {
-    width: 10%;
-    padding: 30px;
+.shopping_cart th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-align: center;
 }
 
+.shopping_cart td {
+    padding: 25px 20px;
+    text-align: center;
+    font-size: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.shopping_cart tr:last-child td {
+    border-bottom: none;
+}
+
+.shopping_cart tr:hover {
+    background: rgba(102, 126, 234, 0.05);
+}
+
 #product_image{
-    width: 200px;
-    height: 200px;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 td.quantity select {
-    font-size: 25px;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+td.quantity select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 button {
-    font-size: x-large;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+button.danger {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+button.danger:hover {
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
 }
 
 table tr.total th {
-    margin-left:70%;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    font-size: 1.3rem;
+    padding: 25px;
+}
+
+table tr.total td {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c3e50;
 }
