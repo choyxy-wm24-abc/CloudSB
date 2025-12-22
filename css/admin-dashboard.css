@@ -16,20 +16,20 @@
     justify-content: center;
     width: 150px;
     height: 150px;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: linear-gradient(135deg, #0077be, #00a8e8);
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none;
     border-radius: 20px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 15px rgba(0,119,190,0.3);
     transition: all 0.3s ease;
 }
 
 .admin-card:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 20px rgba(0,0,0,0.4);
-    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    box-shadow: 0 12px 20px rgba(0,119,190,0.4);
+    background: linear-gradient(135deg, #00a8e8, #0077be);
     color: #fff;
 }
 

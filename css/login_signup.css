@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
     padding: 20px;
 }
 
@@ -34,7 +34,7 @@
 
 .login th, .signup th{
     padding: 30px 40px;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(0, 119, 190, 0.1) 0%, rgba(0, 168, 232, 0.1) 100%);
     text-align: left;
     border: none;
     font-weight: 600;
@@ -58,9 +58,9 @@
 
 .login input:focus, .signup input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #0077be;
     background: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 119, 190, 0.1);
     transform: translateY(-1px);
 }
 
@@ -70,7 +70,7 @@
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 10px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -92,25 +92,25 @@
 .gender input[type="radio"] {
     width: auto;
     margin-right: 8px;
-    accent-color: #667eea;
+    accent-color: #0077be;
 }
 
 button{
     font-size: 1.1rem;
     padding: 12px 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.3);
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 119, 190, 0.4);
 }
 
 button:active {
@@ -129,7 +129,7 @@ label.upload {
 
 label.upload img {
     display: block;
-    border: 3px dashed #667eea;
+    border: 3px dashed #0077be;
     width: 120px;
     height: 120px;
     object-fit: cover;
@@ -141,7 +141,7 @@ label.upload img {
 }
 
 label.upload img:hover {
-    border-color: #764ba2;
+    border-color: #00a8e8;
     transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 119, 190, 0.2);
 }

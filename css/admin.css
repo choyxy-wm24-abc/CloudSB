@@ -6,21 +6,21 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
     min-height: 100vh;
 }
 
 #info {
     position: fixed;
     color: #fff;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     border: none;
     border-radius: 12px;
     padding: 16px 24px;
     left: 50%;
     translate: -50% 0;
     z-index: 999;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,119,190,0.3);
     backdrop-filter: blur(10px);
     font-weight: 500;
 
@@ -40,10 +40,10 @@ body {
 }
 
 .teddy {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     padding: 10px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0,119,190,0.2);
 }
 
 .teddy img {
@@ -79,11 +79,11 @@ body {
 }
 
 .row_bar h1 a:hover {
-    color: #667eea;
+    color: #0077be;
 }
 
 .row_bar h2 {
-    color: #667eea;
+    color: #0077be;
     font-size: 1.3rem;
     font-weight: 600;
 }
@@ -97,11 +97,11 @@ body {
 }
 
 .layout th {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px rgba(0,119,190,0.2);
     transition: all 0.3s ease;
     text-align: center;
     font-weight: 600;
@@ -148,7 +148,7 @@ body {
 
 .ad_table th {
     color: white;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     font-weight: 600;
     font-size: 1.05rem;
 }
@@ -195,19 +195,19 @@ body {
 /* Button */
 button {
     padding: 10px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.3);
 }
 
 button:hover{
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 119, 190, 0.4);
 }
 
 button.danger {
@@ -262,7 +262,7 @@ nav h1 {
 }
 
 nav a{
-    color: #667eea;
+    color: #0077be;
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 8px;
@@ -271,8 +271,8 @@ nav a{
 }
 
 nav a:hover {
-    background: rgba(102, 126, 234, 0.1);
-    color: #764ba2;
+    background: rgba(0, 119, 190, 0.1);
+    color: #00a8e8;
 }
 
 .product-container {
@@ -348,9 +348,9 @@ nav a:hover {
 
 .form input:focus, .form select:focus, .form textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #0077be;
     background: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 119, 190, 0.1);
 }
 
 .form > section {
@@ -389,7 +389,7 @@ label.upload {
 
 label.upload img {
     display: block;
-    border: 3px dashed #667eea;
+    border: 3px dashed #0077be;
     width: 150px;
     height: 150px;
     object-fit: cover;
@@ -401,9 +401,9 @@ label.upload img {
 }
 
 label.upload img:hover {
-    border-color: #764ba2;
+    border-color: #00a8e8;
     transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 119, 190, 0.2);
 }
 
 /* user order */
@@ -423,7 +423,7 @@ div.order table {
 }
 
 tr.head th {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
 }
 
@@ -460,20 +460,20 @@ nav.pager a {
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.3s ease;
-    color: #667eea;
+    color: #0077be;
     font-weight: 500;
     border: 2px solid transparent;
 }
 
 nav.pager a:hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 119, 190, 0.3);
 }
 
 nav.pager a.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
-    border-color: #667eea;
+    border-color: #0077be;
 }

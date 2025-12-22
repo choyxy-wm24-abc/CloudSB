@@ -5,11 +5,11 @@ nav.search {
 div.category {
     margin: 40px auto;
     padding: 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     width: 90%;
     max-width: 1200px;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,119,190,0.2);
 }
 
 div.category a {
@@ -33,7 +33,7 @@ div.category a:hover {
 
 body {
     margin: 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -66,7 +66,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(0, 119, 190, 0.05) 0%, rgba(0, 168, 232, 0.05) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 20px;
@@ -105,7 +105,7 @@ body {
 }
 
 .product-card:hover h2 {
-    color: #667eea;
+    color: #0077be;
 }
 
 .product-card p {
@@ -119,7 +119,7 @@ body {
     margin: 15px 0 0 0;
     font-size: 1.4rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -165,22 +165,22 @@ nav.pager a {
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.3s ease;
-    color: #667eea;
+    color: #0077be;
     font-weight: 500;
     border: 2px solid transparent;
 }
 
 nav.pager a:hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 119, 190, 0.3);
 }
 
 nav.pager a.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: white;
-    border-color: #667eea;
+    border-color: #0077be;
 }
 
 .category-container {
@@ -197,13 +197,13 @@ nav.pager a.active {
     align-items: center;
     justify-content: center;
     height: 120px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     color: #fff;
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px rgba(0,119,190,0.2);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;

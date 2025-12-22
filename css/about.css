@@ -18,7 +18,7 @@ div.about, div.contact {
 div.about section h2, div.contact section h2 {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -36,7 +36,7 @@ div.about p, div.contact p, div.contact h2 {
 
 .underline {
     text-decoration: underline;
-    text-decoration-color: #667eea;
+    text-decoration-color: #0077be;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
 }

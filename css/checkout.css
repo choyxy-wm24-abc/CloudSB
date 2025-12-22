@@ -1,116 +1,193 @@
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .menu {
     position: relative;
-    height: 100px;
-    background: rgb(51,0,102);
+    height: 80px;
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
+    box-shadow: 0 4px 20px rgba(0,119,190,0.2);
 }
 
 .menu_row {
     display: flex;
-    padding: 28px;
+    padding: 20px 30px;
     position: relative;
-    gap: 50px;
+    gap: 40px;
+    align-items: center;
 }
 
 .menu li{
     list-style-type: none;
-
 }
 
 .menu_row h1{
-    font-size: xx-large;
-    color: aliceblue;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .menu_row img{
-    position: relative;
-    margin-right:0px;  
-    height: 50px;
-    margin-top: -5px;
-    background: transparent;
+    height: 30px;
+    width: 30px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
 }
 
 body{
-    background-color: rgb(204, 153, 255);
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .checkout {
-    margin-left: 120px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 /* Address CSS */
-
 .addressbook {
     display: grid;
-    grid: auto / auto auto auto;
-    gap: 5px;
-    place-content: start;
-    font-size: xx-large;
-    margin-top: 10px;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    align-items: center;
+    font-size: 1.1rem;
+    margin: 30px 0;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 select, button {
-    font-size: x-large;
-    padding: 10px;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #0077be;
+    box-shadow: 0 0 0 3px rgba(0, 119, 190, 0.1);
+}
+
+button {
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 119, 190, 0.4);
 }
 
 .payment_method select {
-    font-size: x-large;
+    font-size: 1rem;
 }
 
 /* Checkout Cart details */
+.order_details {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
 
 .order_details hr {
-    width: 96%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
+    border: none;
+    border-radius: 2px;
+    margin: 20px 0;
 }
 
 table {
-    margin-left: -60px;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .order_details th, .order_details td {
-    width: 10%;
-    font-size: x-large;
-    display: center;
+    padding: 15px 20px;
+    font-size: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-.order_details td {
-    width: 10%;
-    padding: 30px;
-    text-align: center;
+.order_details th {
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
+    color: white;
+    font-weight: 600;
+}
+
+.order_details tr:last-child td {
+    border-bottom: none;
 }
 
 .err {
-    color: red;
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-weight: 500;
 }
 
 /* Address readonly */
+.address {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
 
 .address label, .address input {
-    font-size: x-large;
+    font-size: 1rem;
+    display: block;
+    margin: 10px 0;
+}
+
+.address input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    background: #f8f9fa;
 }
 
 /* Payment */
-
 .payment_info {
     display: grid;
-    grid: auto / auto auto auto;
-    gap: 5px;
-    place-content: start;
-    font-size: large;
-    margin-top: 10px;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    align-items: center;
+    font-size: 1rem;
+    margin: 30px 0;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .payment_info > label:not(:has(*)) {
-    place-self: stretch;
-    background: #ccc;
-    font-weight: bold;
-    padding: 10px;
+    background: linear-gradient(135deg, rgba(0, 119, 190, 0.1) 0%, rgba(0, 168, 232, 0.1) 100%);
+    font-weight: 600;
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: #333;
 }
 
 .payment_info select, .payment_info input, .payment_info button {
-    font-size: x-large;
+    font-size: 1rem;
 }
