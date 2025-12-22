@@ -257,7 +257,7 @@ function get_mail() {
     $m->Username = 'zhenghauchiang30@gmail.com';
     $m->Password = 'fwpf lrbq ypjy ncnp';
     $m->CharSet = 'utf-8';
-    $m->setFrom($m->Username, 'Crispy Kaw²');
+    $m->setFrom($m->Username, 'CTRL + EAT');
 
     return $m;
 }

@@ -17,7 +17,7 @@ $product_search = req('product_search');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crispy Kaw Kaw</title>
+    <title>CTRL + EAT</title>
     <link rel="shortcut icon" href="/image/teddy-bear.png">
     <link rel="stylesheet" href="/css/head.css">
     <link rel="stylesheet" href="/css/menu.css">
@@ -37,7 +37,7 @@ $product_search = req('product_search');
         <?php else: ?>
             <div class="menu_icon"><a href="../../index.php"><img src="/icon/teddy-bear.png" alt="This is our store icon"></a></div>
         <?php endif ?>
-        <div class="menu_store_name"><h1>Crispy <span>Kaw²</span></h1></div>
+        <div class="menu_store_name"><h1>CTRL + EAT</h1></div>
 
         <div class="menu_nav">
             <nav>

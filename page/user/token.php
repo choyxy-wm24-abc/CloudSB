@@ -82,7 +82,7 @@ span {
     <nav>
         <div class="menu">
             <div class="menu_row">
-                <h1>Crispy Kaw² &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Password Reset</h1>
+                <h1>CTRL + EAT &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Password Reset</h1>
             </div>
         </div>
     </nav>

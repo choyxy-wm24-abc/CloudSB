@@ -70,7 +70,7 @@ if (is_post()) {
                 Thank you for shopping with us!! Your order will be delivered to you within 
                 <span style='color: green; font-size: x-large;'>3-5 working days</span>.
             </p>
-            <p style='font-size: x-large; color: blue; font-weight: bold;'>From, Crispy Kaw Kaw Admin</p>
+            <p style='font-size: x-large; color: blue; font-weight: bold;'>From, CTRL + EAT Admin</p>
         ";
         $m->send();
 
@@ -102,7 +102,7 @@ if (is_post()) {
                 <span class="back_btn" onclick="window.location.href='./addressbook.php?user_id=<?= $_GET['user_id'] ?>'">
                     <img src="/icon/back.jpg" alt="backbtn">
                 </span>
-                <span><h1>Crispy Kaw²</h1></span><h1>|</h1><span><h1>Check Out</h1></span>
+                <span><h1>CTRL + EAT</h1></span><h1>|</h1><span><h1>Check Out</h1></span>
             </div>
         </div>
     </nav>

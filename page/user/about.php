@@ -17,19 +17,17 @@ require_once '../../_head.php';
     <br><br>
     <div class="about">
         <section>
-            <h2>🔥WELCOME TO CRISPY KAW²🔥</h2>
+            <h2>🔥WELCOME TO CTRL + EAT🔥</h2>
             <br>
             <h2> About Us </h2>
         </section>
         <br>
     
         <p> 
-            Welcome to Crispy kaw², the universe’s ultimate destination for space-themed potato chips! 🚀✨
+            Welcome to CTRL + EAT, the universe’s ultimate destination for space-themed potato chips! 🚀✨
         </p>
         <p>
-            At Crispy kaw², we believe that snacking can be an adventure. That’s why we’ve crafted a collection of 
-            crispy and crunchy potato chips inspired by the stars, planets, and galaxies beyond. From Mamamia BBQ to 
-            Supernova Sour Cream & Onion, every bite is a journey through the flavors of the universe. 
+            At CTRL + EAT, we believe that fast food can be an adventure. That’s why we’ve crafted a menu of mouth-watering burgers, fries, and wraps inspired by bold flavors from around the world. From Spicy Galactic Burger to Cosmic Cheese Fries, every meal is a journey through taste, designed to delight your cravings and satisfy your hunger.
         </p>
     </div>
     <div class="contact">
@@ -39,7 +37,7 @@ require_once '../../_head.php';
         <p>
             For inquiries, suggestions, Find us at
         </p>
-            <h2 class="underline"> crispykawkaw@email.com </h2>
+            <h2 class="underline"> CTRL_EAT@email.com </h2>
             <h2 class="underline"> 016-377 3055 </h2>
             <h2> 13-03A 13th Floor Plaza Atrium Lorong P Ramlee </h2>
             <h2> 50520 Kuala Lumpur </h2>

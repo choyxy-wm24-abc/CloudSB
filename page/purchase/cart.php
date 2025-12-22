@@ -20,7 +20,7 @@ if (is_post()) {
         <div class="menu">
             <div class="menu_row">
                 <span class="back_btn" name="back" value="return"><a href="./shopnow.php?user_id=<?= $_GET['user_id'] ?>"><img src="/icon/back.jpg" alt="backbtn"></a></span>
-                <span><h1>Crispy Kaw²</h1></span><h1>|</h1><span><h1>My Shopping Cart</h1></span>
+                <span><h1>CTRL + EAT</h1></span><h1>|</h1><span><h1>My Shopping Cart</h1></span>
             </div>
         </div>
     </nav>

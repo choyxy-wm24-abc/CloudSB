@@ -64,7 +64,7 @@ if (is_post()) {
             </p>
             <h2 style='font-style: italic; color: blue'>If you DID NOT request for password reset, 
             please IGNORE this message, your password will REMAIN UNCHANGE.</h2>
-            <p>From, Crispy Kaw Kaw Admin</p>
+            <p>From, CTRL + EAT Admin</p>
         ";
         $m->send();
 
@@ -99,7 +99,7 @@ span {
         <div class="menu">
             <div class="menu_row">
                 <span class="back_btn" onclick="window.history.back()"><img src="/icon/back.jpg" alt="backbtn"></span>
-                <span><h1>Crispy Kaw²</h1></span><h1>|</h1><span><h1>Password Reset</h1></span>
+                <span><h1>CTRL + EAT</h1></span><h1>|</h1><span><h1>Password Reset</h1></span>
             </div>
         </div>
     </nav>

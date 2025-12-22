@@ -11,9 +11,9 @@ class SimplePager {
     public function __construct($query, $params, $limit, $page) {
         global $_db;
 
-        // Set [limit] and [page]
-        $this->limit = ctype_digit($limit) ? max($limit, 1) : 12;
-        $this->page = ctype_digit($page) ? max($page, 1) : 1;
+        // Set [limit] and [page] (cast to string for ctype_digit)
+        $this->limit = ctype_digit((string)$limit) ? max($limit, 1) : 12;
+        $this->page  = ctype_digit((string)$page)  ? max($page, 1)  : 1;
 
         // Set [item count]
         $q = preg_replace('/SELECT.+FROM/', 'SELECT COUNT(*) FROM', $query, 1);
@@ -35,6 +35,7 @@ class SimplePager {
         // Set [count]
         $this->count = count($this->result);
     }
+
 
     public function html($href = '', $attr = '') {
         if (!$this->result) return;
