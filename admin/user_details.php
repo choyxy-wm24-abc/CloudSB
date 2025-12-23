@@ -25,20 +25,69 @@ if (is_post()) {
         redirect('/admin/member.php');
     }
     elseif ($action === 'delete_user') {
-        // First, delete all related orders and orderlist entries
-        $stm = $_db->prepare('DELETE ol FROM orderlist ol JOIN `order` o ON ol.order_id = o.order_id WHERE o.user_id = ?');
-        $stm->execute([$user_id]);
+        // Delete user and all related data in correct order to avoid foreign key constraints
         
-        // Delete orders
-        $stm = $_db->prepare('DELETE FROM `order` WHERE user_id = ?');
-        $stm->execute([$user_id]);
-        
-        // Delete user
-        $stm = $_db->prepare('DELETE FROM user WHERE user_id = ?');
-        $stm->execute([$user_id]);
-
-        temp('info', 'User deleted successfully');
-        redirect('/admin/member.php');
+        try {
+            // Start transaction for data integrity
+            $_db->beginTransaction();
+            
+            // 1. Delete orderlist entries (items in orders)
+            $stm = $_db->prepare('DELETE ol FROM orderlist ol JOIN `order` o ON ol.order_id = o.order_id WHERE o.user_id = ?');
+            $stm->execute([$user_id]);
+            
+            // 2. Delete orders
+            $stm = $_db->prepare('DELETE FROM `order` WHERE user_id = ?');
+            $stm->execute([$user_id]);
+            
+            // 3. Delete addresses (this was causing the foreign key error)
+            $stm = $_db->prepare('DELETE FROM address WHERE user_id = ?');
+            $stm->execute([$user_id]);
+            
+            // 4. Delete any tokens for password reset
+            $stm = $_db->prepare('DELETE FROM token WHERE user_id = ?');
+            $stm->execute([$user_id]);
+            
+            // 5. Delete any other potential references (if they exist)
+            // Check for cart table (if it exists in database, not session)
+            try {
+                $stm = $_db->prepare('DELETE FROM cart WHERE user_id = ?');
+                $stm->execute([$user_id]);
+            } catch (PDOException $e) {
+                // Cart table might not exist, ignore this error
+            }
+            
+            // Check for reviews/ratings table (if it exists)
+            try {
+                $stm = $_db->prepare('DELETE FROM review WHERE user_id = ?');
+                $stm->execute([$user_id]);
+            } catch (PDOException $e) {
+                // Review table might not exist, ignore this error
+            }
+            
+            // Check for notifications table (if it exists)
+            try {
+                $stm = $_db->prepare('DELETE FROM notification WHERE user_id = ?');
+                $stm->execute([$user_id]);
+            } catch (PDOException $e) {
+                // Notification table might not exist, ignore this error
+            }
+            
+            // 6. Finally delete the user
+            $stm = $_db->prepare('DELETE FROM user WHERE user_id = ?');
+            $stm->execute([$user_id]);
+            
+            // Commit transaction
+            $_db->commit();
+            
+            temp('info', 'User deleted successfully');
+            redirect('/admin/member.php');
+            
+        } catch (PDOException $e) {
+            // Rollback transaction on error
+            $_db->rollback();
+            temp('info', 'Error deleting user: ' . $e->getMessage());
+            redirect('/admin/member.php');
+        }
     }
 }
 
