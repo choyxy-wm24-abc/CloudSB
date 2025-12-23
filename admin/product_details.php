@@ -2,7 +2,6 @@
 
 require_once '../connect.php';
 require_once '../_base.php';
-require_once '../admin/layout.php';
 
 auth('Admin');
 
@@ -138,6 +137,9 @@ if (is_post()) { // form sumbitted check
     }
 
 }
+
+// Include layout AFTER processing form logic
+require_once '../admin/layout.php';
 
 ?>
 

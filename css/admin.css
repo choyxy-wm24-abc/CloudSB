@@ -679,6 +679,27 @@ nav.pager a.active {
     display: none !important;
 }
 
+/* Ensure modern admin header is properly positioned */
+.modern-admin-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* Reset any conflicting margins/padding */
+body > .modern-admin-header:first-child {
+    margin-top: 0 !important;
+}
+
+/* Fix any layout issues */
+main, .admin-hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
 /* Extra Large Form Styles for Admin Product Details */
 .admin-product-form-fullscreen {
     min-height: 100vh;

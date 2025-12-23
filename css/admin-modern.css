@@ -1,5 +1,17 @@
 /* Modern Admin Dashboard Styles */
 
+/* Reset and fix header positioning */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 /* Override existing body styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
@@ -9,6 +21,15 @@ body {
     color: #333 !important;
     line-height: 1.6;
     min-height: 100vh;
+}
+
+/* Ensure header stays at top */
+.modern-admin-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Hide old elements */
@@ -22,6 +43,7 @@ body {
     padding: 4rem 0 3rem 0;
     position: relative;
     overflow: hidden;
+    margin-top: 0 !important; /* Ensure no top margin */
 }
 
 .admin-hero::before {

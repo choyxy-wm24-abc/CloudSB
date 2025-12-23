@@ -2,8 +2,6 @@
 require_once '../connect.php';
 require_once '../_base.php';
 
-require_once '../admin/layout.php';
-
 auth('Admin');
 
 if (is_post()){
@@ -112,6 +110,9 @@ if (is_post()){
         redirect('/admin/product.php');
     }
 }
+
+// Include layout AFTER processing form logic
+require_once '../admin/layout.php';
 
 ?>
 

@@ -2,12 +2,47 @@
 
 require_once '../connect.php';
 require_once '../_base.php';
-require_once '../admin/layout.php';
 
 auth('Admin');
 
 $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
+// Handle POST requests FIRST (before any HTML output)
+if (is_post()) {
+    $action = req('action');
+    
+    if ($action === 'update_status') {
+        $status = req('status');
+
+        $stm = $_db->prepare('
+            UPDATE user
+            SET status = ?
+            WHERE user_id = ?
+        ');
+        $stm->execute([$status, $user_id]);
+
+        temp('info', 'User Status updated');
+        redirect('/admin/member.php');
+    }
+    elseif ($action === 'delete_user') {
+        // First, delete all related orders and orderlist entries
+        $stm = $_db->prepare('DELETE ol FROM orderlist ol JOIN `order` o ON ol.order_id = o.order_id WHERE o.user_id = ?');
+        $stm->execute([$user_id]);
+        
+        // Delete orders
+        $stm = $_db->prepare('DELETE FROM `order` WHERE user_id = ?');
+        $stm->execute([$user_id]);
+        
+        // Delete user
+        $stm = $_db->prepare('DELETE FROM user WHERE user_id = ?');
+        $stm->execute([$user_id]);
+
+        temp('info', 'User deleted successfully');
+        redirect('/admin/member.php');
+    }
+}
+
+// Handle GET requests
 if (is_get()) {
     $stm = $_db->prepare('SELECT * FROM user u WHERE user_id = ?');
     $stm->execute([$user_id]);
@@ -21,19 +56,8 @@ if (is_get()) {
     $_SESSION['photo'] = $u->photo;
 }
 
-if (is_post()) {
-    $status = req('status');
-
-    $stm = $_db->prepare('
-        UPDATE user
-        SET status = ?
-        WHERE user_id = ?
-    ');
-    $stm->execute([$status, $user_id]);
-
-    temp('info', 'User Status updated');
-    redirect();
-}
+// Include layout AFTER processing all logic
+require_once '../admin/layout.php';
 
 // Get user orders
 $stm = $_db->prepare('SELECT * FROM `order` WHERE user_id = ? ORDER BY order_date DESC');
@@ -161,16 +185,42 @@ button[onclick*="member.php"] { display: none !important; }
                 </div>
                 
                 <form method="post" class="status-form">
+                    <input type="hidden" name="action" value="update_status">
                     <div class="status-options">
                         <?= html_radios('status', $_status, '', 'class="status-radio"') ?>
                     </div>
-                    <button type="submit" class="update-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20,6 9,17 4,12"/>
-                        </svg>
-                        Update Status
-                    </button>
+                    <div class="form-actions">
+                        <button type="submit" class="update-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            Update Status
+                        </button>
+                    </div>
                 </form>
+                
+                <!-- Delete User Section -->
+                <div class="danger-zone">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                        </svg>
+                        Danger Zone
+                    </h3>
+                    <p>Permanently delete this user and all associated data. This action cannot be undone.</p>
+                    <form method="post" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this user? This will also delete all their orders and cannot be undone.')">
+                        <input type="hidden" name="action" value="delete_user">
+                        <button type="submit" class="delete-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3,6 5,6 21,6"/>
+                                <path d="M19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1 2-2h4a2,2 0 0,1 2,2v2"/>
+                                <line x1="10" y1="11" x2="10" y2="17"/>
+                                <line x1="14" y1="11" x2="14" y2="17"/>
+                            </svg>
+                            Delete User
+                        </button>
+                    </form>
+                </div>
             </div>
 
             <!-- Order History Card -->

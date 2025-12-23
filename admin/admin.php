@@ -45,6 +45,33 @@ $total_revenue = $_db->query('SELECT SUM(tprice) FROM `order`')->fetchColumn();
 
 <link rel="stylesheet" href="../css/admin-modern.css">
 
+<!-- Fix header positioning -->
+<style>
+/* Ensure proper header positioning */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.modern-admin-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* Remove any top margins from first elements */
+.admin-hero {
+    margin-top: 0 !important;
+}
+
+/* Hide any conflicting elements */
+.admin-header {
+    display: none !important;
+}
+</style>
+
 <!-- Hero Section -->
 <section class="admin-hero">
     <div class="hero-container">
