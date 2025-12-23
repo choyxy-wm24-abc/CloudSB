@@ -40,106 +40,202 @@ if (is_post()) {
 $_title = 'User | Login';
 ?>
 
-<link rel="stylesheet" href="/css/login-modern.css">
+<link rel="stylesheet" href="../../css/login-modern.css">
 
-<!-- Hero Section -->
-<section class="login-hero">
-    <div class="hero-container">
+<!-- Hide old styles -->
+<style>
+header nav .menu { display: none !important; }
+body form { display: none !important; }
+body h1 { display: none !important; }
+</style>
+
+<!-- Modern Login Page -->
+<div class="modern-login-page">
+    <!-- Hero Section -->
+    <div class="hero-section">
         <div class="hero-content">
-            <div class="back-navigation">
-                <button onclick="window.location.href='../../index.php'" class="back-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+            <div class="back-nav">
+                <a href="../../index.php" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 19-7-7 7-7"/>
+                        <path d="m19 12H5"/>
                     </svg>
-                    <span>Back to Home</span>
-                </button>
+                    Back to Home
+                </a>
             </div>
-            <h1 class="hero-title">
-                <span class="brand-highlight">Welcome Back</span>
-            </h1>
-            <p class="hero-subtitle">Sign in to your account to continue</p>
+            <div class="hero-text">
+                <div class="login-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                        <polyline points="10,17 15,12 10,7"/>
+                        <line x1="15" y1="12" x2="3" y2="12"/>
+                    </svg>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to your account to continue your food journey</p>
+            </div>
         </div>
     </div>
-</section>
 
-<!-- Login Section -->
-<section class="login-section">
-    <div class="section-container">
-        <div class="login-content">
-            <div class="login-card">
-                <div class="card-header">
-                    <div class="login-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z"/>
-                        </svg>
-                    </div>
-                    <h2 class="section-title">Sign In</h2>
-                    <p class="section-description">
-                        Enter your credentials to access your account
-                    </p>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Login Form Card -->
+            <div class="login-form-card">
+                <div class="form-header">
+                    <h2>Sign In</h2>
+                    <p>Enter your credentials to access your account</p>
                 </div>
-                
-                <form method="post" class="login-form">
+
+                <form method="post" class="modern-form">
                     <div class="form-group">
-                        <label for="username" class="field-label">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                        <label for="username">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
                             </svg>
                             Username
                         </label>
                         <div class="input-wrapper">
-                            <?= html_text('username', 'placeholder="Enter your username"') ?>
-                            <?= err('username') ?>
+                            <input type="text" id="username" name="username" class="modern-input" placeholder="Enter your username" value="<?= htmlspecialchars($username ?? '') ?>" required>
                         </div>
+                        <?php if (isset($_err['username'])): ?>
+                            <div class="error-message"><?= $_err['username'] ?></div>
+                        <?php endif; ?>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label for="password" class="field-label">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
+                        <label for="password">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <circle cx="12" cy="16" r="1"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                             </svg>
                             Password
                         </label>
                         <div class="input-wrapper">
-                            <?= html_password('password', 'placeholder="Enter your password"') ?>
-                            <?= err('password') ?>
-                            <?= err('invalid') ?>
-                            <?= err('inactive') ?>
+                            <input type="password" id="password" name="password" class="modern-input" placeholder="Enter your password" required>
+                            <div class="password-toggle" onclick="togglePassword('password')">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </div>
                         </div>
+                        <?php if (isset($_err['password'])): ?>
+                            <div class="error-message"><?= $_err['password'] ?></div>
+                        <?php endif; ?>
+                        <?php if (isset($_err['invalid'])): ?>
+                            <div class="error-message"><?= $_err['invalid'] ?></div>
+                        <?php endif; ?>
+                        <?php if (isset($_err['inactive'])): ?>
+                            <div class="error-message"><?= $_err['inactive'] ?></div>
+                        <?php endif; ?>
                     </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z"/>
-                            </svg>
-                            Sign In
-                        </button>
-                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                            <polyline points="10,17 15,12 10,7"/>
+                            <line x1="15" y1="12" x2="3" y2="12"/>
+                        </svg>
+                        Sign In
+                    </button>
                 </form>
-                
-                <div class="additional-actions">
+
+                <div class="form-footer">
                     <div class="forgot-password">
                         <a href="reset.php" class="forgot-link">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,9.2 10.2,10V11.5H13.8V10C13.8,9.2 12.8,8.2 12,8.2Z"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
                             </svg>
                             Forgot your password?
                         </a>
                     </div>
                     
                     <div class="signup-prompt">
-                        <p class="help-text">Don't have an account?</p>
+                        <p>Don't have an account?</p>
                         <a href="signup.php" class="signup-link">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                             </svg>
                             Create Account
                         </a>
                     </div>
                 </div>
             </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Why Choose CTRL + EAT?
+                </h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h4>Fast Delivery</h4>
+                            <p>Quick and reliable food delivery to your doorstep</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h4>Quality Food</h4>
+                            <p>Fresh ingredients and delicious meals every time</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h4>Easy Ordering</h4>
+                            <p>Simple and intuitive ordering process</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</div>
+
+<script>
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const toggle = field.nextElementSibling;
+    
+    if (field.type === 'password') {
+        field.type = 'text';
+        toggle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <path d="M1 1l22 22"/>
+            </svg>
+        `;
+    } else {
+        field.type = 'password';
+        toggle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+        `;
+    }
+}
+</script>
 
