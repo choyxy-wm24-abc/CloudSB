@@ -103,321 +103,186 @@ if (is_post())  {
 $_title = 'User | Sign Up';
 ?>
 
-<link rel="stylesheet" href="../../css/signup-modern.css">
+<link rel="stylesheet" href="/css/signup-modern.css">
 
-<!-- Hide old styles -->
-<style>
-header nav .menu { display: none !important; }
-body form { display: none !important; }
-body h1 { display: none !important; }
-</style>
-
-<!-- Modern Signup Page -->
-<div class="modern-signup-page">
-    <!-- Hero Section -->
-    <div class="hero-section">
+<!-- Hero Section -->
+<section class="signup-hero">
+    <div class="hero-container">
         <div class="hero-content">
-            <div class="back-nav">
-                <a href="../../index.php" class="back-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="m12 19-7-7 7-7"/>
-                        <path d="m19 12H5"/>
+            <div class="back-navigation">
+                <button onclick="window.location.href='../../index.php'" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
                     </svg>
-                    Back to Home
-                </a>
+                    <span>Back to Home</span>
+                </button>
             </div>
-            <div class="hero-text">
-                <div class="signup-icon">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                </div>
-                <h1>Join Us Today</h1>
-                <p>Create your account and start your delicious food journey</p>
-            </div>
+            <h1 class="hero-title">
+                <span class="brand-highlight">Join Us Today</span>
+            </h1>
+            <p class="hero-subtitle">Create your account to get started</p>
         </div>
     </div>
+</section>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <!-- Signup Form Card -->
-            <div class="signup-form-card">
-                <div class="form-header">
-                    <h2>Create Account</h2>
-                    <p>Fill in your information to get started</p>
+<!-- Signup Section -->
+<section class="signup-section">
+    <div class="section-container">
+        <div class="signup-content">
+            <div class="signup-card">
+                <div class="card-header">
+                    <div class="signup-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"/>
+                        </svg>
+                    </div>
+                    <h2 class="section-title">Create Account</h2>
+                    <p class="section-description">
+                        Fill in your information to create your account
+                    </p>
                 </div>
-
-                <form method="post" class="modern-form" enctype="multipart/form-data">
+                
+                <form method="post" class="signup-form" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="username">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
+                            <label for="username" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                                 </svg>
                                 Username
                             </label>
                             <div class="input-wrapper">
-                                <input type="text" id="username" name="username" class="modern-input" placeholder="Enter your username" value="<?= htmlspecialchars($username ?? '') ?>" required>
+                                <?= html_text('username', 'placeholder="Enter your username"') ?>
+                                <?= err('username') ?>
                             </div>
-                            <?php if (isset($_err['username'])): ?>
-                                <div class="error-message"><?= $_err['username'] ?></div>
-                            <?php endif; ?>
                         </div>
                         
                         <div class="form-group">
-                            <label for="age">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                            <label for="age" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9,12A3,3 0 0,0 12,9A3,3 0 0,0 15,12A3,3 0 0,0 12,15A3,3 0 0,0 9,12M12,20L16.95,15.05C17.92,14.08 18.5,12.77 18.5,11.36C18.5,9.15 16.85,7.5 14.64,7.5A4.14,4.14 0 0,0 12,8.5A4.14,4.14 0 0,0 9.36,7.5C7.15,7.5 5.5,9.15 5.5,11.36C5.5,12.77 6.08,14.08 7.05,15.05L12,20Z"/>
                                 </svg>
                                 Age
                             </label>
                             <div class="input-wrapper">
-                                <input type="number" id="age" name="age" class="modern-input" min="13" max="100" placeholder="Enter your age" value="<?= htmlspecialchars($age ?? '') ?>" required>
+                                <?= html_text('age', 'type="number" min="13" max="100" placeholder="Enter your age"') ?>
+                                <?= err('age') ?>
                             </div>
-                            <?php if (isset($_err['age'])): ?>
-                                <div class="error-message"><?= $_err['age'] ?></div>
-                            <?php endif; ?>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
+                        <label class="field-label">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                             </svg>
                             Gender
                         </label>
-                        <div class="radio-group">
-                            <?php foreach ($_genders as $value => $text): ?>
-                                <label class="radio-option">
-                                    <input type="radio" name="gender" value="<?= $value ?>" <?= ($gender ?? '') == $value ? 'checked' : '' ?>>
-                                    <span class="radio-custom"></span>
-                                    <span class="radio-text"><?= $text ?></span>
-                                </label>
-                            <?php endforeach; ?>
+                        <div class="radio-wrapper">
+                            <?= html_radios('gender', $_genders) ?>
+                            <?= err('gender') ?>
                         </div>
-                        <?php if (isset($_err['gender'])): ?>
-                            <div class="error-message"><?= $_err['gender'] ?></div>
-                        <?php endif; ?>
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
+                        <label for="email" class="field-label">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,5.11 21.1,4 20,4Z"/>
                             </svg>
                             Email Address
                         </label>
                         <div class="input-wrapper">
-                            <input type="email" id="email" name="email" class="modern-input" placeholder="Enter your email address" value="<?= htmlspecialchars($email ?? '') ?>" required>
+                            <?= html_text('email', 'type="email" placeholder="Enter your email address"') ?>
+                            <?= err('email') ?>
                         </div>
-                        <?php if (isset($_err['email'])): ?>
-                            <div class="error-message"><?= $_err['email'] ?></div>
-                        <?php endif; ?>
                     </div>
                     
                     <div class="form-group">
-                        <label for="photo">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="9" cy="9" r="2"/>
-                                <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                        <label for="photo" class="field-label">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9,2V7.38L10.5,8.88L12,7.38V2H9M15,7.38V2H12V7.38L13.5,8.88L15,7.38M9,10.62L7.5,9.12L2,14.62V17.62H7.5L9,16.12V10.62M15,10.62V16.12L16.5,17.62H22V14.62L16.5,9.12L15,10.62Z"/>
                             </svg>
                             Profile Photo
                         </label>
                         <div class="photo-upload-wrapper">
-                            <label class="photo-upload" for="photo">
-                                <input type="file" id="photo" name="photo" accept="image/*" hidden>
+                            <label class="photo-upload" tabindex="0">
+                                <?= html_file('photo', 'image/*', 'hidden') ?>
                                 <img id="preview" src="../../photos/photo.jpg" alt="Preview">
                                 <div class="upload-overlay">
-                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                        <polyline points="17,8 12,3 7,8"/>
-                                        <line x1="12" y1="3" x2="12" y2="15"/>
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
                                     </svg>
-                                    <span>Click to upload photo</span>
-                                    <small>JPG, PNG, GIF up to 3MB</small>
+                                    <span>Click to upload</span>
                                 </div>
                             </label>
+                            <?= err('photo') ?>
                         </div>
-                        <?php if (isset($_err['photo'])): ?>
-                            <div class="error-message"><?= $_err['photo'] ?></div>
-                        <?php endif; ?>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="password">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            <label for="password" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
                                 </svg>
                                 Password
                             </label>
                             <div class="input-wrapper">
-                                <input type="password" id="password" name="password" class="modern-input" placeholder="Enter your password" required>
-                                <div class="password-toggle" onclick="togglePassword('password')">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                </div>
+                                <?= html_password('password', 'placeholder="Enter your password"') ?>
+                                <?= err('password') ?>
                             </div>
-                            <?php if (isset($_err['password'])): ?>
-                                <div class="error-message"><?= $_err['password'] ?></div>
-                            <?php endif; ?>
-                            <div class="password-strength" id="password-strength"></div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="confirm_password">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                    <polyline points="9,12 11,14 15,10"/>
+                            <label for="confirm_password" class="field-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
                                 </svg>
                                 Confirm Password
                             </label>
                             <div class="input-wrapper">
-                                <input type="password" id="confirm_password" name="confirm_password" class="modern-input" placeholder="Confirm your password" required>
-                                <div class="password-toggle" onclick="togglePassword('confirm_password')">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                </div>
+                                <?= html_password('confirm_password', 'placeholder="Confirm your password"') ?>
+                                <?= err('confirm_password') ?>
+                                <?= err('password_notmatched') ?>
                             </div>
-                            <?php if (isset($_err['confirm_password'])): ?>
-                                <div class="error-message"><?= $_err['confirm_password'] ?></div>
-                            <?php endif; ?>
-                            <?php if (isset($_err['password_notmatched'])): ?>
-                                <div class="error-message"><?= $_err['password_notmatched'] ?></div>
-                            <?php endif; ?>
-                            <div class="password-match" id="password-match"></div>
                         </div>
                     </div>
                     
                     <div class="password-requirements">
-                        <h4>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 16v-4"/>
-                                <path d="M12 8h.01"/>
-                            </svg>
-                            Password Requirements
-                        </h4>
-                        <div class="requirements-grid">
-                            <div class="requirement-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20,6 9,17 4,12"/>
-                                </svg>
-                                <span>8-12 characters long</span>
-                            </div>
-                            <div class="requirement-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20,6 9,17 4,12"/>
-                                </svg>
-                                <span>At least one letter</span>
-                            </div>
-                            <div class="requirement-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20,6 9,17 4,12"/>
-                                </svg>
-                                <span>At least one number</span>
-                            </div>
-                            <div class="requirement-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20,6 9,17 4,12"/>
-                                </svg>
-                                <span>Special character (@$!%*?&)</span>
-                            </div>
-                        </div>
+                        <h4>Password Requirements:</h4>
+                        <ul>
+                            <li>8-12 characters long</li>
+                            <li>At least one letter</li>
+                            <li>At least one number</li>
+                            <li>At least one special character (@$!%*?&)</li>
+                        </ul>
                     </div>
-
-                    <button type="submit" class="submit-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                        Create Account
-                    </button>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"/>
+                            </svg>
+                            Create Account
+                        </button>
+                    </div>
                 </form>
-
-                <div class="form-footer">
-                    <div class="login-prompt">
-                        <p>Already have an account?</p>
-                        <a href="login.php" class="login-link">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                                <polyline points="10,17 15,12 10,7"/>
-                                <line x1="15" y1="12" x2="3" y2="12"/>
-                            </svg>
-                            Sign In Instead
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Benefits Section -->
-            <div class="benefits-section">
-                <h3>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                    Join Thousands of Happy Customers
-                </h3>
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 12l2 2 4-4"/>
-                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                
+                <div class="additional-actions">
+                    <p class="help-text">Already have an account?</p>
+                    <a href="login.php" class="login-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10,17V14H3V10H10V7L15,12L10,17M10,2H19A2,2 0 0,1 21,4V20A2,2 0 0,1 19,22H10A2,2 0 0,1 8,20V18H10V20H19V4H10V6H8V4A2,2 0 0,1 10,2Z"/>
                         </svg>
-                        <div class="benefit-content">
-                            <h4>Easy Ordering</h4>
-                            <p>Simple and intuitive ordering process</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12,6 12,12 16,14"/>
-                        </svg>
-                        <div class="benefit-content">
-                            <h4>Fast Delivery</h4>
-                            <p>Quick delivery to your doorstep</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        <div class="benefit-content">
-                            <h4>Quality Food</h4>
-                            <p>Fresh ingredients and delicious meals</p>
-                        </div>
-                    </div>
+                        Sign In Instead
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <script>
-// Photo upload preview
 document.getElementById('photo').addEventListener('change', function (e) {
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
@@ -429,82 +294,43 @@ document.getElementById('photo').addEventListener('change', function (e) {
     }
 });
 
-// Password toggle function
-function togglePassword(fieldId) {
-    const field = document.getElementById(fieldId);
-    const toggle = field.nextElementSibling;
+// Real-time password validation
+document.getElementById('password').addEventListener('input', function(e) {
+    const password = e.target.value;
+    const feedback = document.createElement('div');
+    feedback.className = 'password-feedback';
     
-    if (field.type === 'password') {
-        field.type = 'text';
-        toggle.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
-                <path d="M1 1l22 22"/>
-            </svg>
-        `;
-    } else {
-        field.type = 'password';
-        toggle.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
-            </svg>
-        `;
-    }
-}
-
-// Password strength checker
-document.addEventListener('DOMContentLoaded', function() {
-    const passwordField = document.getElementById('password');
-    const confirmField = document.getElementById('confirm_password');
-    const strengthDiv = document.getElementById('password-strength');
-    const matchDiv = document.getElementById('password-match');
-
-    if (passwordField) {
-        passwordField.addEventListener('input', function() {
-            const password = this.value;
-            const strength = checkPasswordStrength(password);
-            strengthDiv.innerHTML = `<div class="strength-bar strength-${strength.level}"><div class="strength-fill"></div></div><span class="strength-text">${strength.text}</span>`;
-        });
-    }
-
-    if (confirmField) {
-        confirmField.addEventListener('input', function() {
-            const password = passwordField.value;
-            const confirm = this.value;
-            
-            if (confirm.length > 0) {
-                if (password === confirm) {
-                    matchDiv.innerHTML = '<span class="match-success">✓ Passwords match</span>';
-                } else {
-                    matchDiv.innerHTML = '<span class="match-error">✗ Passwords do not match</span>';
-                }
-            } else {
-                matchDiv.innerHTML = '';
-            }
-        });
+    // Remove existing feedback
+    const existing = e.target.parentNode.querySelector('.password-feedback');
+    if (existing) existing.remove();
+    
+    if (password.length > 0) {
+        let messages = [];
+        
+        if (password.length < 8 || password.length > 12) {
+            messages.push('8-12 characters required');
+        }
+        if (!/[a-zA-Z]/.test(password)) {
+            messages.push('At least one letter required');
+        }
+        if (!/\d/.test(password)) {
+            messages.push('At least one number required');
+        }
+        if (!/[@$!%*?&]/.test(password)) {
+            messages.push('At least one special character (@$!%*?&) required');
+        }
+        
+        if (messages.length > 0) {
+            feedback.innerHTML = '<small style="color: #e74c3c;">• ' + messages.join('<br>• ') + '</small>';
+            feedback.style.marginTop = '5px';
+            e.target.parentNode.appendChild(feedback);
+        } else {
+            feedback.innerHTML = '<small style="color: #27ae60;">✓ Password meets all requirements</small>';
+            feedback.style.marginTop = '5px';
+            e.target.parentNode.appendChild(feedback);
+        }
     }
 });
-
-function checkPasswordStrength(password) {
-    let score = 0;
-    let feedback = [];
-
-    if (password.length >= 8) score++;
-    if (password.length >= 12) score++;
-    if (/[a-z]/.test(password)) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[@$!%*?&]/.test(password)) score++;
-
-    const levels = ['weak', 'weak', 'fair', 'good', 'strong', 'excellent'];
-    const texts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong', 'Excellent'];
-
-    return {
-        level: levels[score] || 'weak',
-        text: texts[score] || 'Very Weak'
-    };
-}
 </script>
 
 
