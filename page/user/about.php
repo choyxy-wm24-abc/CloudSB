@@ -16,11 +16,11 @@ require_once '../../_head.php';
                 Welcome to <span class="highlight">CTRL + EAT</span>
             </h1>
             <p class="hero-subtitle">
-                The universe's ultimate destination for delicious food adventures
+                Your trusted partner for delicious food delivered fresh to your doorstep
             </p>
             <div class="hero-badge">
-                <span class="badge-icon">🚀</span>
-                <span class="badge-text">Space-Themed Culinary Experience</span>
+                <span class="badge-icon">🍽️</span>
+                <span class="badge-text">Premium Food Delivery Experience</span>
             </div>
         </div>
     </div>
@@ -37,32 +37,32 @@ require_once '../../_head.php';
                 </div>
                 <div class="card-content">
                     <p class="intro-text">
-                        Welcome to CTRL + EAT, the universe's ultimate destination for space-themed culinary delights! 🚀✨
+                        Welcome to CTRL + EAT, your premier destination for quality food delivery services! 🍽️✨
                     </p>
                     <p class="description-text">
-                        At CTRL + EAT, we believe that fast food can be an adventure. That's why we've crafted a menu of mouth-watering burgers, fries, and wraps inspired by bold flavors from around the world. From Spicy Galactic Burger to Cosmic Cheese Fries, every meal is a journey through taste, designed to delight your cravings and satisfy your hunger.
+                        At CTRL + EAT, we believe that great food should be accessible to everyone. That's why we've partnered with the finest local restaurants and chefs to bring you a diverse menu of mouth-watering dishes. From hearty burgers and crispy fries to fresh wraps and healthy options, every meal is prepared with care and delivered with speed to satisfy your cravings.
                     </p>
                     
                     <div class="features-grid">
                         <div class="feature-item">
                             <div class="feature-icon">🍔</div>
-                            <h3>Galactic Burgers</h3>
-                            <p>Out-of-this-world flavors</p>
+                            <h3>Gourmet Burgers</h3>
+                            <p>Juicy, flavorful, and satisfying</p>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">🍟</div>
-                            <h3>Cosmic Fries</h3>
-                            <p>Crispy and delicious</p>
+                            <h3>Crispy Fries</h3>
+                            <p>Golden and perfectly seasoned</p>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">🌯</div>
-                            <h3>Space Wraps</h3>
-                            <p>Fresh and satisfying</p>
+                            <h3>Fresh Wraps</h3>
+                            <p>Healthy and delicious options</p>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">🥤</div>
-                            <h3>Stellar Drinks</h3>
-                            <p>Refreshing beverages</p>
+                            <h3>Refreshing Drinks</h3>
+                            <p>Perfect beverage pairings</p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ require_once '../../_head.php';
                 </div>
                 <div class="card-content">
                     <p class="contact-intro">
-                        For inquiries, suggestions, or to embark on your culinary space adventure, find us at:
+                        For inquiries, feedback, or to place a special order, reach out to us:
                     </p>
                     
                     <div class="contact-info">
@@ -94,7 +94,7 @@ require_once '../../_head.php';
                             </div>
                             <div class="contact-details">
                                 <h3>Email</h3>
-                                <a href="mailto:CTRL_EAT@email.com" class="contact-link">CTRL_EAT@email.com</a>
+                                <a href="mailto:hello@ctrleat.com" class="contact-link">hello@ctrleat.com</a>
                             </div>
                         </div>
                         
@@ -106,7 +106,7 @@ require_once '../../_head.php';
                             </div>
                             <div class="contact-details">
                                 <h3>Phone</h3>
-                                <a href="tel:016-377-3055" class="contact-link">016-377 3055</a>
+                                <a href="tel:+60123456789" class="contact-link">+60 12-345 6789</a>
                             </div>
                         </div>
                         
@@ -119,9 +119,9 @@ require_once '../../_head.php';
                             <div class="contact-details">
                                 <h3>Address</h3>
                                 <div class="address">
-                                    <p>13-03A 13th Floor Plaza Atrium</p>
-                                    <p>Lorong P Ramlee</p>
-                                    <p>50520 Kuala Lumpur</p>
+                                    <p>CTRL + EAT Food Hub</p>
+                                    <p>Jalan Bukit Bintang</p>
+                                    <p>50200 Kuala Lumpur, Malaysia</p>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@ require_once '../../_head.php';
                     
                     <div class="cta-section">
                         <a href="../purchase/shopnow.php" class="cta-button">
-                            Start Your Food Adventure
+                            Order Now & Get Delivered
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
                             </svg>
