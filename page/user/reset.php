@@ -58,32 +58,381 @@ if (is_post()) {
         }
         
         $m->isHTML(true);
-        $m->Subject = "Reset password";
+        $m->Subject = "🔐 Reset Your Password - CTRL + EAT";
         $m->Body = "
-            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;'>
-                <div style='text-align: center; margin-bottom: 30px;'>
-                    $photoHtml
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>Reset Your Password</title>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+                
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+                
+                body {
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    line-height: 1.6;
+                    color: #1a1a1a;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    margin: 0;
+                    padding: 40px 20px;
+                }
+                
+                .email-container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background: #ffffff;
+                    border-radius: 24px;
+                    overflow: hidden;
+                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+                }
+                
+                .email-header {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    padding: 50px 40px;
+                    text-align: center;
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .email-header::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"grain\" width=\"100\" height=\"100\" patternUnits=\"userSpaceOnUse\"><circle cx=\"25\" cy=\"25\" r=\"1\" fill=\"white\" opacity=\"0.1\"/><circle cx=\"75\" cy=\"75\" r=\"1\" fill=\"white\" opacity=\"0.1\"/><circle cx=\"50\" cy=\"10\" r=\"0.5\" fill=\"white\" opacity=\"0.1\"/><circle cx=\"10\" cy=\"60\" r=\"0.5\" fill=\"white\" opacity=\"0.1\"/><circle cx=\"90\" cy=\"40\" r=\"0.5\" fill=\"white\" opacity=\"0.1\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23grain)\"/></svg>');
+                    pointer-events: none;
+                }
+                
+                .brand-logo {
+                    position: relative;
+                    z-index: 2;
+                    margin-bottom: 30px;
+                }
+                
+                .brand-name {
+                    color: white;
+                    font-size: 32px;
+                    font-weight: 700;
+                    letter-spacing: -0.5px;
+                    margin-bottom: 8px;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                }
+                
+                .brand-tagline {
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+                
+                .security-icon {
+                    position: relative;
+                    z-index: 2;
+                    width: 80px;
+                    height: 80px;
+                    background: rgba(255, 255, 255, 0.15);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto 30px;
+                    backdrop-filter: blur(10px);
+                    border: 2px solid rgba(255, 255, 255, 0.2);
+                }
+                
+                .security-icon svg {
+                    width: 40px;
+                    height: 40px;
+                    fill: white;
+                    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+                }
+                
+                .email-body {
+                    padding: 50px 40px;
+                }
+                
+                .greeting {
+                    font-size: 18px;
+                    color: #4a5568;
+                    margin-bottom: 30px;
+                    font-weight: 500;
+                }
+                
+                .main-title {
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #1a202c;
+                    text-align: center;
+                    margin-bottom: 20px;
+                    letter-spacing: -0.5px;
+                }
+                
+                .subtitle {
+                    font-size: 16px;
+                    color: #718096;
+                    text-align: center;
+                    margin-bottom: 40px;
+                    line-height: 1.6;
+                }
+                
+                .cta-section {
+                    text-align: center;
+                    margin: 40px 0;
+                }
+                
+                .reset-button {
+                    display: inline-block;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    text-decoration: none;
+                    padding: 18px 40px;
+                    border-radius: 50px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    letter-spacing: 0.5px;
+                    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .reset-button::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                    transition: left 0.5s;
+                }
+                
+                .reset-button:hover::before {
+                    left: 100%;
+                }
+                
+                .security-notice {
+                    background: linear-gradient(135deg, #fef5e7 0%, #fdf2e9 100%);
+                    border: 1px solid #f6ad55;
+                    border-radius: 16px;
+                    padding: 25px;
+                    margin: 40px 0;
+                    position: relative;
+                }
+                
+                .security-notice::before {
+                    content: '⚠️';
+                    position: absolute;
+                    top: -10px;
+                    left: 25px;
+                    background: #fef5e7;
+                    padding: 0 10px;
+                    font-size: 20px;
+                }
+                
+                .notice-title {
+                    color: #c05621;
+                    font-weight: 600;
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+                
+                .notice-text {
+                    color: #9c4221;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    margin: 0;
+                }
+                
+                .info-grid {
+                    display: table;
+                    width: 100%;
+                    margin: 30px 0;
+                }
+                
+                .info-item {
+                    display: table-row;
+                    margin-bottom: 15px;
+                }
+                
+                .info-icon {
+                    display: table-cell;
+                    width: 40px;
+                    vertical-align: top;
+                    padding-right: 15px;
+                    padding-top: 2px;
+                }
+                
+                .info-icon svg {
+                    width: 20px;
+                    height: 20px;
+                    fill: #667eea;
+                }
+                
+                .info-text {
+                    display: table-cell;
+                    color: #4a5568;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    vertical-align: top;
+                }
+                
+                .email-footer {
+                    background: #f7fafc;
+                    padding: 40px;
+                    text-align: center;
+                    border-top: 1px solid #e2e8f0;
+                }
+                
+                .footer-text {
+                    color: #718096;
+                    font-size: 14px;
+                    margin-bottom: 15px;
+                }
+                
+                .footer-brand {
+                    color: #4a5568;
+                    font-weight: 600;
+                    font-size: 16px;
+                    margin-bottom: 5px;
+                }
+                
+                .footer-note {
+                    color: #a0aec0;
+                    font-size: 12px;
+                    font-style: italic;
+                }
+                
+                .divider {
+                    height: 1px;
+                    background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+                    margin: 30px 0;
+                }
+                
+                @media only screen and (max-width: 600px) {
+                    body {
+                        padding: 20px 10px;
+                    }
+                    
+                    .email-body {
+                        padding: 30px 25px;
+                    }
+                    
+                    .email-header {
+                        padding: 40px 25px;
+                    }
+                    
+                    .email-footer {
+                        padding: 30px 25px;
+                    }
+                    
+                    .main-title {
+                        font-size: 24px;
+                    }
+                    
+                    .reset-button {
+                        padding: 16px 30px;
+                        font-size: 15px;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class='email-container'>
+                <!-- Header -->
+                <div class='email-header'>
+                    <div class='security-icon'>
+                        <svg viewBox='0 0 24 24' fill='currentColor'>
+                            <path d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z'/>
+                        </svg>
+                    </div>
+                    <div class='brand-logo'>
+                        <div class='brand-name'>CTRL + EAT</div>
+                        <div class='brand-tagline'>Delicious Food Delivery</div>
+                    </div>
                 </div>
-                <p style='font-size: 16px; color: #333;'>Dear $u->username,</p>
-                <h1 style='color: #667eea; text-align: center; margin: 30px 0;'>Request for Reset Password</h1>
-                <p style='font-size: 16px; color: #555; line-height: 1.6;'>
-                    Your password can be reset through the link below.
-                </p>
-                <div style='text-align: center; margin: 30px 0;'>
-                    <a href='$url' style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;'>Reset Password</a>
+                
+                <!-- Body -->
+                <div class='email-body'>
+                    <div class='greeting'>Hello $u->username,</div>
+                    
+                    <h1 class='main-title'>🔐 Password Reset Request</h1>
+                    <p class='subtitle'>
+                        We received a request to reset your password. Click the button below to create a new secure password for your account.
+                    </p>
+                    
+                    <div class='cta-section'>
+                        <a href='$url' class='reset-button'>
+                            🔑 Reset My Password
+                        </a>
+                    </div>
+                    
+                    <div class='divider'></div>
+                    
+                    <div class='info-grid'>
+                        <div class='info-item'>
+                            <div class='info-icon'>
+                                <svg viewBox='0 0 24 24' fill='currentColor'>
+                                    <path d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17A1.5,1.5 0 0,1 10.5,15.5A1.5,1.5 0 0,1 12,14A1.5,1.5 0 0,1 13.5,15.5A1.5,1.5 0 0,1 12,17M12,10.5C10.07,10.5 8.5,8.93 8.5,7C8.5,5.07 10.07,3.5 12,3.5C13.93,3.5 15.5,5.07 15.5,7C15.5,8.93 13.93,10.5 12,10.5Z'/>
+                                </svg>
+                            </div>
+                            <div class='info-text'>
+                                <strong>Quick Action Required:</strong> This reset link will expire in 5 minutes for your security.
+                            </div>
+                        </div>
+                        <div class='info-item'>
+                            <div class='info-icon'>
+                                <svg viewBox='0 0 24 24' fill='currentColor'>
+                                    <path d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z'/>
+                                </svg>
+                            </div>
+                            <div class='info-text'>
+                                <strong>Secure Process:</strong> Your account remains protected throughout this process.
+                            </div>
+                        </div>
+                        <div class='info-item'>
+                            <div class='info-icon'>
+                                <svg viewBox='0 0 24 24' fill='currentColor'>
+                                    <path d='M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'/>
+                                </svg>
+                            </div>
+                            <div class='info-text'>
+                                <strong>One-Time Use:</strong> This link can only be used once and expires automatically.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class='security-notice'>
+                        <div class='notice-title'>🛡️ Important Security Notice</div>
+                        <p class='notice-text'>
+                            If you <strong>did not request</strong> this password reset, please ignore this email. 
+                            Your password will remain unchanged and your account stays secure. 
+                            Consider enabling two-factor authentication for enhanced security.
+                        </p>
+                    </div>
                 </div>
-                <p style='font-size: 16px; color: #555; line-height: 1.6;'>
-                    Please click on the button above to reset your password as soon as possible.
-                </p>
-                <div style='background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 30px 0; border-left: 4px solid #ffc107;'>
-                    <h3 style='color: #856404; margin-top: 0;'>Important Security Notice</h3>
-                    <p style='color: #856404; margin-bottom: 0;'>If you DID NOT request for password reset, please IGNORE this message. Your password will REMAIN UNCHANGED.</p>
+                
+                <!-- Footer -->
+                <div class='email-footer'>
+                    <div class='footer-brand'>CTRL + EAT Team</div>
+                    <div class='footer-text'>
+                        Bringing delicious food to your doorstep with care and security.
+                    </div>
+                    <div class='footer-note'>
+                        This is an automated security email. Please do not reply to this message.
+                    </div>
                 </div>
-                <p style='font-size: 14px; color: #888; text-align: center; margin-top: 40px;'>
-                    From, CTRL + EAT Admin<br>
-                    <small>This link will expire in 5 minutes for security purposes.</small>
-                </p>
             </div>
+        </body>
+        </html>
         ";
         $m->send();
 
