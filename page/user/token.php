@@ -112,19 +112,30 @@ header nav .menu { display: none !important; }
                     <p>Please enter your new password below</p>
                 </div>
 
-                <form method="post" class="modern-form">
-                    <div class="form-group">
-                        <label for="password">
+                <form method="post" class="modern-form" style="display: block !important; visibility: visible !important;">
+                    <!-- New Password Field -->
+                    <div class="form-group" style="display: block !important; visibility: visible !important; margin-bottom: 2rem;">
+                        <label for="password" style="display: flex !important; align-items: center; gap: 0.5rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.5rem;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                                 <circle cx="12" cy="16" r="1"/>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                             </svg>
-                            New Password
+                            New Password *
                         </label>
-                        <div class="input-wrapper">
-                            <input type="password" id="password" name="password" class="modern-input" maxlength="100" placeholder="Enter your new password" required>
-                            <div class="password-toggle" onclick="togglePassword('password')">
+                        <div class="input-wrapper" style="position: relative; display: block !important;">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                class="modern-input" 
+                                maxlength="100" 
+                                placeholder="Enter your new password" 
+                                required
+                                style="width: 100% !important; padding: 1rem 3rem 1rem 1.5rem !important; border: 2px solid #e9ecef !important; border-radius: 12px !important; font-size: 1rem !important; background: #f8f9fa !important; display: block !important; visibility: visible !important;"
+                                value="<?= htmlspecialchars(req('password')) ?>"
+                            >
+                            <div class="password-toggle" onclick="togglePassword('password')" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: #7f8c8d; z-index: 10;">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                                     <circle cx="12" cy="12" r="3"/>
@@ -132,23 +143,36 @@ header nav .menu { display: none !important; }
                             </div>
                         </div>
                         <?php if (isset($_err['password'])): ?>
-                            <div class="error-message"><?= $_err['password'] ?></div>
+                            <div class="error-message" style="color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem; padding: 0.5rem 1rem; background: rgba(231, 76, 60, 0.1); border-radius: 6px; border-left: 4px solid #e74c3c;">
+                                <?= $_err['password'] ?>
+                            </div>
                         <?php endif; ?>
                         <div class="password-strength" id="password-strength"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="confirm">
+                    <!-- Confirm Password Field -->
+                    <div class="form-group" style="display: block !important; visibility: visible !important; margin-bottom: 2rem;">
+                        <label for="confirm" style="display: flex !important; align-items: center; gap: 0.5rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.5rem;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                                 <polyline points="9,12 11,14 15,10"/>
                             </svg>
-                            Confirm Password
+                            Confirm Password *
                         </label>
-                        <div class="input-wrapper">
-                            <input type="password" id="confirm" name="confirm" class="modern-input" maxlength="100" placeholder="Confirm your new password" required>
-                            <div class="password-toggle" onclick="togglePassword('confirm')">
+                        <div class="input-wrapper" style="position: relative; display: block !important;">
+                            <input 
+                                type="password" 
+                                id="confirm" 
+                                name="confirm" 
+                                class="modern-input" 
+                                maxlength="100" 
+                                placeholder="Confirm your new password" 
+                                required
+                                style="width: 100% !important; padding: 1rem 3rem 1rem 1.5rem !important; border: 2px solid #e9ecef !important; border-radius: 12px !important; font-size: 1rem !important; background: #f8f9fa !important; display: block !important; visibility: visible !important;"
+                                value="<?= htmlspecialchars(req('confirm')) ?>"
+                            >
+                            <div class="password-toggle" onclick="togglePassword('confirm')" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: #7f8c8d; z-index: 10;">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                                     <circle cx="12" cy="12" r="3"/>
@@ -156,12 +180,14 @@ header nav .menu { display: none !important; }
                             </div>
                         </div>
                         <?php if (isset($_err['confirm'])): ?>
-                            <div class="error-message"><?= $_err['confirm'] ?></div>
+                            <div class="error-message" style="color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem; padding: 0.5rem 1rem; background: rgba(231, 76, 60, 0.1); border-radius: 6px; border-left: 4px solid #e74c3c;">
+                                <?= $_err['confirm'] ?>
+                            </div>
                         <?php endif; ?>
                         <div class="password-match" id="password-match"></div>
                     </div>
 
-                    <button type="submit" class="submit-btn">
+                    <button type="submit" class="submit-btn" style="width: 100% !important; background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%) !important; color: white !important; border: none !important; padding: 1rem 2rem !important; border-radius: 12px !important; font-size: 1.1rem !important; font-weight: 600 !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 0.5rem !important; margin-top: 1rem !important;">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                             <path d="M9 12l2 2 4-4"/>
