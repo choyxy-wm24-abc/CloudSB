@@ -1,0 +1,158 @@
+/* Admin Add Product Modern Styles - Extends product details styles */
+@import url('./admin-product-details-modern.css');
+
+/* Specific overrides for add product page */
+.modern-admin-add-product {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-icon {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.add-icon svg {
+    width: 80px;
+    height: 80px;
+    stroke: white;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    animation: pulse 2s infinite;
+}
+
+/* Add product specific styling */
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Image preview for new products */
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.upload-overlay {
+    opacity: 1 !important;
+    background: rgba(231, 76, 60, 0.9);
+}
+
+/* Form validation styling */
+.form-group.has-error .modern-input,
+.form-group.has-error .modern-textarea {
+    border-color: #e74c3c;
+    background: rgba(231, 76, 60, 0.05);
+}
+
+/* Success state for completed fields */
+.form-group.has-success .modern-input,
+.form-group.has-success .modern-textarea {
+    border-color: #27ae60;
+    background: rgba(39, 174, 96, 0.05);
+}
+
+/* Enhanced button styling for add action */
+.btn-primary {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+    font-size: 1.1rem;
+    padding: 1.25rem 2.5rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+}
+
+/* Progress indicator for form completion */
+.form-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 1000;
+}
+
+.form-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Enhanced image upload area */
+.image-upload-section {
+    position: relative;
+}
+
+.image-upload-section::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #e74c3c, #f39c12, #e74c3c, #f39c12);
+    background-size: 400% 400%;
+    border-radius: 25px;
+    opacity: 0;
+    animation: gradientShift 3s ease infinite;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.image-upload-section:hover::before {
+    opacity: 0.3;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Responsive adjustments for add page */
+@media (max-width: 768px) {
+    .btn-primary {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+/* Animation for new product creation */
+.form-card {
+    transform: translateY(50px);
+    opacity: 0;
+    animation: slideInUp 0.8s ease forwards;
+}
+
+.form-card:nth-child(1) { animation-delay: 0.2s; }
+.form-card:nth-child(2) { animation-delay: 0.4s; }
+.form-card:nth-child(3) { animation-delay: 0.6s; }
+.form-card:nth-child(4) { animation-delay: 0.8s; }
+
+/* Success message styling */
+.success-message {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.success-message svg {
+    stroke: white;
+    flex-shrink: 0;
+}

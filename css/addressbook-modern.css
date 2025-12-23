@@ -1,0 +1,589 @@
+/* Addressbook Page Modern Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+    min-height: 100vh;
+}
+
+.modern-addressbook-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+    color: white;
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.back-nav {
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.hero-text {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.address-icon {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.address-icon svg {
+    width: 80px;
+    height: 80px;
+    stroke: white;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 4rem 0;
+    position: relative;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Empty State */
+.empty-state {
+    background: white;
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.empty-icon {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.empty-icon svg {
+    stroke: #e74c3c;
+    opacity: 0.7;
+}
+
+.empty-state h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-first-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.add-first-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+/* Address Selection Card */
+.address-selection-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.address-selection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #e74c3c, #f39c12);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.card-header h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card-header h2 svg {
+    stroke: #e74c3c;
+}
+
+.card-header p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+/* Address Options */
+.address-options {
+    margin-bottom: 2rem;
+}
+
+.address-option {
+    margin-bottom: 1rem;
+}
+
+.address-option input[type="radio"] {
+    display: none;
+}
+
+.address-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.address-card:hover {
+    background: #e8f5e8;
+    border-color: #e74c3c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.15);
+}
+
+.address-option input[type="radio"]:checked + .address-card {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(243, 156, 18, 0.1));
+    border-color: #e74c3c;
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.2);
+}
+
+.address-icon {
+    flex-shrink: 0;
+}
+
+.address-icon svg {
+    stroke: #e74c3c;
+}
+
+.address-details {
+    flex: 1;
+}
+
+.address-text {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.radio-indicator {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e9ecef;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.address-option input[type="radio"]:checked + .address-card .radio-indicator {
+    border-color: #e74c3c;
+    background: #e74c3c;
+}
+
+.radio-dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+}
+
+.address-option input[type="radio"]:checked + .address-card .radio-dot {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Error Messages */
+.err {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+    display: block;
+}
+
+/* Form Actions */
+.form-actions {
+    text-align: center;
+}
+
+.continue-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.continue-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+.continue-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Add Address Card */
+.add-address-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    border: 2px dashed #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.add-address-card:hover {
+    border-color: #e74c3c;
+    transform: translateY(-2px);
+}
+
+.add-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.add-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #e74c3c, #f39c12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-icon svg {
+    stroke: white;
+}
+
+.add-text {
+    flex: 1;
+}
+
+.add-text h3 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.add-text p {
+    color: #7f8c8d;
+    font-size: 1rem;
+}
+
+.add-address-btn {
+    background: #e74c3c;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.add-address-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Tips Card */
+.tips-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.tips-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.tips-card h3 svg {
+    stroke: #e74c3c;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.tip-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tip-item:hover {
+    background: #e8f5e8;
+    transform: translateY(-2px);
+}
+
+.tip-item svg {
+    stroke: #27ae60;
+    flex-shrink: 0;
+}
+
+.tip-item span {
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
+    }
+    
+    .address-selection-card,
+    .add-address-card,
+    .tips-card {
+        margin: 0 1rem 2rem;
+        padding: 2rem 1.5rem;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .add-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .address-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .address-selection-card,
+    .add-address-card,
+    .tips-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .empty-state {
+        padding: 3rem 1.5rem;
+    }
+    
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .continue-btn,
+    .add-first-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Animation for cards */
+.address-selection-card,
+.add-address-card,
+.tips-card,
+.empty-state {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 0.6s ease forwards;
+}
+
+.address-selection-card { animation-delay: 0.1s; }
+.add-address-card { animation-delay: 0.2s; }
+.tips-card { animation-delay: 0.3s; }
+.empty-state { animation-delay: 0.1s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Address options animation */
+.address-option {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.5s ease forwards;
+}
+
+.address-option:nth-child(1) { animation-delay: 0.4s; }
+.address-option:nth-child(2) { animation-delay: 0.5s; }
+.address-option:nth-child(3) { animation-delay: 0.6s; }
+.address-option:nth-child(4) { animation-delay: 0.7s; }
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Tips animation */
+.tip-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.5s ease forwards;
+}
+
+.tip-item:nth-child(1) { animation-delay: 0.6s; }
+.tip-item:nth-child(2) { animation-delay: 0.7s; }
+.tip-item:nth-child(3) { animation-delay: 0.8s; }
+.tip-item:nth-child(4) { animation-delay: 0.9s; }

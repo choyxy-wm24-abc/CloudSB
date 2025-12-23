@@ -35,111 +35,215 @@ if (is_post()) {
     redirect();
 }
 
+// Get user orders
+$stm = $_db->prepare('SELECT * FROM `order` WHERE user_id = ? ORDER BY order_date DESC');
+$stm->execute([$user_id]);
+$orders = $stm->fetchAll();
+
 ?>
 
+<link rel="stylesheet" href="../css/admin-user-details-modern.css">
+
+<!-- Hide old styles -->
 <style>
-    .title{
-        text-align: center;
-        padding: 10px;
-        color: rgb(255, 255, 255);
-        font-weight: bolder;
-        background: rgb(178, 71, 255);
-    }
-
-    .layout {
-        margin-left: 120px;
-    }
-
-    .layout {
-        display: grid;
-        grid: auto / auto auto;
-        gap: 5px;
-        place-content: start;
-        font-size: large;
-        margin-top: 10px;
-    }
-
-    .layout > label:not(:has(*)) {
-        place-self: stretch;
-        background: #ccc;
-        font-weight: bold;
-        padding: 10px;
-    }
-
-    form {
-        display: grid;
-        grid: auto / auto auto auto auto;
-        gap: 15px;
-        place-content: start;
-        font-size: large;
-        margin-top: 10px;
-        color: white;
-    }
-
-    form > label:not(:has(*)) {
-        place-self: stretch;
-        background: #ccc;
-        font-weight: bold;
-        padding: 10px;
-    }
+.title { display: none !important; }
+.layout { display: none !important; }
+main .order { display: none !important; }
+button[onclick*="member.php"] { display: none !important; }
 </style>
 
-<br>
-<button onclick="window.location.href='../admin/member.php'" style='margin-left: 3%; font-size: 30px'>Back</button>
-<br><br>
-<h1 class="title">USER DETAILS</h1>
-<br>
-<main>
-    <div class="layout">
-        <label for="photo">Photo:</label>
-        <label class="upload" tabindex="0">
-            <?= html_file_disabled('photo', 'image/*', 'hidden') ?>     
-            <img id="preview" src="../photos/<?= $photo ?>" style="margin-left:0px;">               
-        </label>
-        <label for="username">Username:</label>
-        <?= html_text_disabled('username') ?>
-        
-        <label for="age">Age:</label>
-        <?= html_text_disabled('age') ?>
-        
-        <label for="email">Email:</label>
-        <?= html_text_disabled('email') ?>
-        <form method="post">
-            <label for="status">Status:</label>
-            <?= html_radios('status', $_status) ?>
-            <button type="submit">Update</button>
-        </form>
-        <br><br><br>
+<!-- Modern Admin User Details Page -->
+<div class="modern-admin-user-details">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="back-nav">
+                <a href="../admin/member.php" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 19-7-7 7-7"/>
+                        <path d="m19 12H5"/>
+                    </svg>
+                    Back to Members
+                </a>
+            </div>
+            <div class="hero-text">
+                <div class="user-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <h1>User Details</h1>
+                <p>Manage user information and view order history</p>
+            </div>
+        </div>
     </div>
-    <div class="order">
-        <h1 class="title">Order History</h1>
-        <br>
-        <table>
-            <tr class="head">
-                <th>Order ID</th>
-                <th>Order Date</th>
-                <th>Total Quantity</th>
-                <th>Total Amount (RM)</th>
-                <th>Details</th>
-            </tr>
-        <?php 
-            $stm = $_db->prepare('SELECT * FROM `order` WHERE user_id = ?');
-            $stm->execute([$user_id]);
-            $orders = $stm->fetchAll();
-        ?>
-            <?php foreach ($orders as $o): ?>
-                <tr>
-                    <td><?= $o->order_id ?></td>
-                    <td><?= $o->order_date ?></td>
-                    <td><?= $o->tquantity ?></td>
-                    <td><?= $o->tprice ?></td>
-                    <td colspan="2">
-                        <button data-post="/user_details.php">
-                        <a href="../admin/user_orderdetails.php?user_id=<?= $user_id ?>&order_id=<?= $o->order_id ?>" style="text-decoration: none; color: black;">DETAILS</a></button>
-                    </td>
-                </tr>
-            <?php endforeach ?>
-        </table>
-        <br>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- User Information Card -->
+            <div class="user-info-card">
+                <div class="card-header">
+                    <h2>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        User Information
+                    </h2>
+                </div>
+                
+                <div class="user-layout">
+                    <!-- User Photo -->
+                    <div class="user-photo-section">
+                        <div class="photo-container">
+                            <img src="../photos/<?= htmlspecialchars($photo) ?>" alt="User Photo" class="user-photo">
+                            <div class="photo-overlay">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Details -->
+                    <div class="user-details-section">
+                        <div class="detail-item">
+                            <label>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                Username
+                            </label>
+                            <div class="detail-value"><?= htmlspecialchars($username) ?></div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <label>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                Email
+                            </label>
+                            <div class="detail-value"><?= htmlspecialchars($email) ?></div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <label>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M8 2v4"/>
+                                    <path d="M16 2v4"/>
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <path d="M3 10h18"/>
+                                </svg>
+                                Age
+                            </label>
+                            <div class="detail-value"><?= htmlspecialchars($age) ?> years old</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Management Card -->
+            <div class="status-card">
+                <div class="card-header">
+                    <h2>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        Account Status
+                    </h2>
+                </div>
+                
+                <form method="post" class="status-form">
+                    <div class="status-options">
+                        <?= html_radios('status', $_status, '', 'class="status-radio"') ?>
+                    </div>
+                    <button type="submit" class="update-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20,6 9,17 4,12"/>
+                        </svg>
+                        Update Status
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order History Card -->
+            <div class="order-history-card">
+                <div class="card-header">
+                    <h2>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                        </svg>
+                        Order History (<?= count($orders) ?> orders)
+                    </h2>
+                </div>
+                
+                <?php if (empty($orders)): ?>
+                <div class="no-orders">
+                    <div class="no-orders-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4"/>
+                            <path d="M12 16h.01"/>
+                        </svg>
+                    </div>
+                    <h3>No Orders Found</h3>
+                    <p>This user hasn't placed any orders yet.</p>
+                </div>
+                <?php else: ?>
+                <div class="orders-list">
+                    <?php foreach ($orders as $order): ?>
+                    <div class="order-item">
+                        <div class="order-info">
+                            <div class="order-id">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 7h.01"/>
+                                    <path d="M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 0 1 0 2.828l-7 7a2 2 0 0 1-2.828 0l-7-7A1.994 1.994 0 0 1 2 12V7a5 5 0 0 1 5-5z"/>
+                                </svg>
+                                Order #<?= $order->order_id ?>
+                            </div>
+                            <div class="order-date">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M8 2v4"/>
+                                    <path d="M16 2v4"/>
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <path d="M3 10h18"/>
+                                </svg>
+                                <?= date('M d, Y', strtotime($order->order_date)) ?>
+                            </div>
+                        </div>
+                        <div class="order-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Items:</span>
+                                <span class="stat-value"><?= $order->tquantity ?></span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total:</span>
+                                <span class="stat-value">RM <?= number_format($order->tprice, 2) ?></span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <a href="../admin/user_orderdetails.php?user_id=<?= $user_id ?>&order_id=<?= $order->order_id ?>" class="details-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4"/>
+                                    <path d="M12 8h.01"/>
+                                </svg>
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
-</main>
+</div>

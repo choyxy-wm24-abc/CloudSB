@@ -116,7 +116,7 @@ header nav .menu { display: none !important; }
                             New Password
                         </label>
                         <div class="input-wrapper">
-                            <input type="password" id="password" name="password" maxlength="100" placeholder="Enter your new password" value="<?= encode($password ?? '') ?>">
+                            <?= html_password('password', 'maxlength="100" placeholder="Enter your new password"') ?>
                             <div class="password-toggle" onclick="togglePassword('password')">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -138,7 +138,7 @@ header nav .menu { display: none !important; }
                             Confirm Password
                         </label>
                         <div class="input-wrapper">
-                            <input type="password" id="confirm" name="confirm" maxlength="100" placeholder="Confirm your new password" value="<?= encode($confirm ?? '') ?>">
+                            <?= html_password('confirm', 'maxlength="100" placeholder="Confirm your new password"') ?>
                             <div class="password-toggle" onclick="togglePassword('confirm')">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>

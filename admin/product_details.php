@@ -140,122 +140,218 @@ if (is_post()) { // form sumbitted check
 }
 
 ?>
-<link rel="stylesheet" href="../css/admin.css">
-<link rel="stylesheet" href="../css/login_signup.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="javascript/app.js"></script>
+<link rel="stylesheet" href="../css/admin-product-details-modern.css">
 
-<div class="admin-product-form-fullscreen">
-    <div class="form-container-xl">
-        <div class="form-header">
-            <h1>Edit Product Details</h1>
-            <p>Update product information below</p>
-        </div>
-        
-        <form method="post" class="form-xl" enctype="multipart/form-data">
-            <!-- Product Basic Info Section -->
-            <div class="form-section">
-                <h3 class="section-title">Basic Information</h3>
-                <div class="form-grid-3">
-                    <div class="form-group">
-                        <label for="product_name">Product Name</label>
-                        <?= html_text('product_name', 'placeholder="Enter product name"') ?>
-                        <?= err('product_name') ?>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="flavour">Flavour</label>
-                        <?= html_text('flavour', 'placeholder="e.g., Chocolate, Vanilla, Strawberry"') ?>
-                        <?= err('flavour') ?>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="category_id">Category ID</label>
-                        <?= html_text('category_id', 'type="number" min="1" placeholder="Enter category ID"') ?>
-                        <?= err('category_id') ?>
-                    </div>
-                </div>
-            </div>
+<!-- Hide old styles -->
+<style>
+.admin-product-form-fullscreen { display: none !important; }
+</style>
 
-            <!-- Product Details Section -->
-            <div class="form-section">
-                <h3 class="section-title">Product Details</h3>
-                <div class="form-group-full">
-                    <label for="details">Product Description</label>
-                    <?= html_textarea('details', 'rows="8" placeholder="Enter detailed product description..."') ?>
-                    <?= err('details') ?>
-                </div>
-            </div>
-
-            <!-- Pricing & Status Section -->
-            <div class="form-section">
-                <h3 class="section-title">Pricing & Status</h3>
-                <div class="form-grid-2">
-                    <div class="form-group">
-                        <label for="price">Price (RM)</label>
-                        <div class="input-with-icon">
-                            <span class="input-icon">RM</span>
-                            <?= html_text('price', 'type="number" step="0.01" min="0" placeholder="0.00"') ?>
-                        </div>
-                        <?= err('price') ?>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Product Status</label>
-                        <div class="radio-group-modern">
-                            <?= html_radios('status', $_status) ?>
-                        </div>
-                        <?= err('status') ?>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Image Section -->
-            <div class="form-section">
-                <h3 class="section-title">Product Image</h3>
-                <div class="image-upload-section">
-                    <div class="image-preview-container">
-                        <label class="upload-xl" tabindex="0">
-                            <?= html_file('image', 'image/*', 'hidden') ?>     
-                            <div class="upload-content">
-                                <img id="preview" src="/image/<?= $image ?>" alt="Product Image">
-                                <div class="upload-overlay">
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                                    </svg>
-                                    <p>Click to upload new image</p>
-                                    <small>Max size: 3MB | Formats: JPG, PNG, GIF</small>
-                                </div>
-                            </div>
-                        </label>
-                        <?= err('image') ?>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form Actions -->
-            <div class="form-actions-xl">
-                <button type="submit" class="btn btn-primary-xl">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
-                    </svg>
-                    Update Product
-                </button>
-                <button type="reset" class="btn btn-secondary-xl">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12,2C17.5,2 22,6.5 22,12C22,17.5 17.5,22 12,22C6.5,22 2,17.5 2,12C2,6.5 6.5,2 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M16.59,8.59L10,15.17L7.41,12.59L6,14L10,18L18,10L16.59,8.59Z"/>
-                    </svg>
-                    Reset Form
-                </button>
-                <button type="button" class="btn btn-outline-xl" onclick="window.location.href='product.php'">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+<!-- Modern Admin Product Details Page -->
+<div class="modern-admin-product-details">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="back-nav">
+                <a href="product.php" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 19-7-7 7-7"/>
+                        <path d="m19 12H5"/>
                     </svg>
                     Back to Products
-                </button>
+                </a>
             </div>
-        </form>
+            <div class="hero-text">
+                <div class="product-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                </div>
+                <h1>Edit Product Details</h1>
+                <p>Update product information and settings</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <form method="post" class="product-form" enctype="multipart/form-data">
+                <!-- Basic Information Card -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4"/>
+                                <path d="M12 8h.01"/>
+                            </svg>
+                            Basic Information
+                        </h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="product_name">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 7h.01"/>
+                                    <path d="M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 0 1 0 2.828l-7 7a2 2 0 0 1-2.828 0l-7-7A1.994 1.994 0 0 1 2 12V7a5 5 0 0 1 5-5z"/>
+                                </svg>
+                                Product Name
+                            </label>
+                            <?= html_text('product_name', 'class="modern-input" placeholder="Enter product name"') ?>
+                            <?= err('product_name') ?>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="flavour">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                Flavour
+                            </label>
+                            <?= html_text('flavour', 'class="modern-input" placeholder="e.g., Chocolate, Vanilla"') ?>
+                            <?= err('flavour') ?>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category_id">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                Category ID
+                            </label>
+                            <?= html_text('category_id', 'class="modern-input" type="number" min="1" placeholder="Enter category ID"') ?>
+                            <?= err('category_id') ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Description Card -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            Product Description
+                        </h2>
+                    </div>
+                    <div class="form-group-full">
+                        <label for="details">Description</label>
+                        <?= html_textarea('details', 'class="modern-textarea" rows="6" placeholder="Enter detailed product description..."') ?>
+                        <?= err('details') ?>
+                        <div class="character-count">Max 500 characters</div>
+                    </div>
+                </div>
+
+                <!-- Pricing & Status Card -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                            Pricing & Status
+                        </h2>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="price">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                                Price (RM)
+                            </label>
+                            <div class="price-input-wrapper">
+                                <span class="currency-symbol">RM</span>
+                                <?= html_text('price', 'class="modern-input price-input" type="number" step="0.01" min="0" placeholder="0.00"') ?>
+                            </div>
+                            <?= err('price') ?>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                                Product Status
+                            </label>
+                            <div class="status-options">
+                                <?= html_radios('status', $_status, '', 'class="status-radio"') ?>
+                            </div>
+                            <?= err('status') ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Image Card -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                            Product Image
+                        </h2>
+                    </div>
+                    <div class="image-upload-section">
+                        <div class="image-preview-container">
+                            <label class="image-upload-label" for="image">
+                                <?= html_file('image', 'image/*', 'class="image-input" id="image"') ?>
+                                <div class="image-preview">
+                                    <img id="preview" src="/image/<?= htmlspecialchars($image) ?>" alt="Product Image">
+                                    <div class="upload-overlay">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                                            <polyline points="21,15 16,10 5,21"/>
+                                        </svg>
+                                        <p>Click to upload new image</p>
+                                        <small>Max size: 3MB | Formats: JPG, PNG, GIF</small>
+                                    </div>
+                                </div>
+                            </label>
+                            <?= err('image') ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20,6 9,17 4,12"/>
+                        </svg>
+                        Update Product
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                        </svg>
+                        Reset Form
+                    </button>
+                    <a href="product.php" class="btn btn-outline">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m12 19-7-7 7-7"/>
+                            <path d="m19 12H5"/>
+                        </svg>
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
