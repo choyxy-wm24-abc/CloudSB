@@ -73,17 +73,6 @@ $_title = 'User | Reset Password';
 header h1 { display: none !important; }
 body form { display: none !important; }
 header nav .menu { display: none !important; }
-
-/* Force form elements to be visible */
-.modern-form { display: block !important; visibility: visible !important; opacity: 1 !important; }
-.form-group { display: block !important; visibility: visible !important; opacity: 1 !important; margin-bottom: 20px !important; }
-.form-group label { display: block !important; visibility: visible !important; opacity: 1 !important; margin-bottom: 8px !important; font-weight: bold !important; color: #333 !important; }
-.modern-input { display: block !important; visibility: visible !important; opacity: 1 !important; }
-.submit-btn { display: block !important; visibility: visible !important; opacity: 1 !important; }
-.error-message { display: block !important; visibility: visible !important; opacity: 1 !important; }
-
-/* Override any hiding animations */
-* { animation: none !important; }
 </style>
 
 <!-- Modern Token Reset Page -->
@@ -124,26 +113,59 @@ header nav .menu { display: none !important; }
                 </div>
 
                 <form method="post" class="modern-form">
-                    <!-- New Password Field -->
                     <div class="form-group">
-                        <label for="password">New Password:</label>
-                        <input type="password" id="password" name="password" class="modern-input" placeholder="Enter your new password" required style="display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; padding: 15px !important; border: 2px solid #ddd !important; border-radius: 8px !important; font-size: 16px !important; background: white !important;">
+                        <label for="password">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <circle cx="12" cy="16" r="1"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                            New Password
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" name="password" class="modern-input" maxlength="100" placeholder="Enter your new password" required>
+                            <div class="password-toggle" onclick="togglePassword('password')">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </div>
+                        </div>
                         <?php if (isset($_err['password'])): ?>
-                            <div class="error-message" style="color: red; margin-top: 5px;"><?= $_err['password'] ?></div>
+                            <div class="error-message"><?= $_err['password'] ?></div>
                         <?php endif; ?>
+                        <div class="password-strength" id="password-strength"></div>
                     </div>
 
-                    <!-- Confirm Password Field -->
                     <div class="form-group">
-                        <label for="confirm">Confirm Password:</label>
-                        <input type="password" id="confirm" name="confirm" class="modern-input" placeholder="Confirm your new password" required style="display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; padding: 15px !important; border: 2px solid #ddd !important; border-radius: 8px !important; font-size: 16px !important; background: white !important;">
+                        <label for="confirm">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                <polyline points="9,12 11,14 15,10"/>
+                            </svg>
+                            Confirm Password
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="password" id="confirm" name="confirm" class="modern-input" maxlength="100" placeholder="Confirm your new password" required>
+                            <div class="password-toggle" onclick="togglePassword('confirm')">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </div>
+                        </div>
                         <?php if (isset($_err['confirm'])): ?>
-                            <div class="error-message" style="color: red; margin-top: 5px;"><?= $_err['confirm'] ?></div>
+                            <div class="error-message"><?= $_err['confirm'] ?></div>
                         <?php endif; ?>
+                        <div class="password-match" id="password-match"></div>
                     </div>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="submit-btn" style="display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; padding: 15px !important; background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%) !important; color: white !important; border: none !important; border-radius: 8px !important; font-size: 16px !important; font-weight: bold !important; cursor: pointer !important; margin-top: 20px !important;">
+                    <button type="submit" class="submit-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
                         Update Password
                     </button>
                 </form>
@@ -191,36 +213,93 @@ header nav .menu { display: none !important; }
 </div>
 
 <script>
-// Simple password validation
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Token page loaded');
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const toggle = field.nextElementSibling;
     
-    // Make sure form elements are visible
-    const form = document.querySelector('.modern-form');
-    const inputs = document.querySelectorAll('.modern-input');
-    const button = document.querySelector('.submit-btn');
-    
-    if (form) {
-        form.style.display = 'block';
-        form.style.visibility = 'visible';
-        form.style.opacity = '1';
-        console.log('Form found and made visible');
+    if (field.type === 'password') {
+        field.type = 'text';
+        toggle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <path d="M1 1l22 22"/>
+            </svg>
+        `;
+    } else {
+        field.type = 'password';
+        toggle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+        `;
     }
-    
-    inputs.forEach(function(input) {
-        input.style.display = 'block';
-        input.style.visibility = 'visible';
-        input.style.opacity = '1';
-        console.log('Input made visible:', input.name);
-    });
-    
-    if (button) {
-        button.style.display = 'block';
-        button.style.visibility = 'visible';
-        button.style.opacity = '1';
-        console.log('Button made visible');
+}
+
+// Password strength checker
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordField = document.getElementById('password');
+    const confirmField = document.getElementById('confirm');
+    const strengthDiv = document.getElementById('password-strength');
+    const matchDiv = document.getElementById('password-match');
+
+    if (passwordField) {
+        passwordField.addEventListener('input', function() {
+            const password = this.value;
+            const strength = checkPasswordStrength(password);
+            strengthDiv.innerHTML = `<div class="strength-bar strength-${strength.level}"><div class="strength-fill"></div></div><span class="strength-text">${strength.text}</span>`;
+        });
+    }
+
+    if (confirmField) {
+        confirmField.addEventListener('input', function() {
+            const password = passwordField.value;
+            const confirm = this.value;
+            
+            if (confirm.length > 0) {
+                if (password === confirm) {
+                    matchDiv.innerHTML = '<span class="match-success">✓ Passwords match</span>';
+                } else {
+                    matchDiv.innerHTML = '<span class="match-error">✗ Passwords do not match</span>';
+                }
+            } else {
+                matchDiv.innerHTML = '';
+            }
+        });
     }
 });
+
+function checkPasswordStrength(password) {
+    let score = 0;
+    let feedback = [];
+
+    if (password.length >= 5) score++;
+    else feedback.push('at least 5 characters');
+
+    if (password.length >= 8) score++;
+    else feedback.push('8+ characters recommended');
+
+    if (/[a-z]/.test(password)) score++;
+    else feedback.push('lowercase letters');
+
+    if (/[A-Z]/.test(password)) score++;
+    else feedback.push('uppercase letters');
+
+    if (/[0-9]/.test(password)) score++;
+    else feedback.push('numbers');
+
+    if (/[^A-Za-z0-9]/.test(password)) score++;
+    else feedback.push('special characters');
+
+    const levels = ['weak', 'weak', 'fair', 'good', 'strong', 'excellent'];
+    const texts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong', 'Excellent'];
+
+    return {
+        level: levels[score] || 'weak',
+        text: texts[score] || 'Very Weak',
+        feedback: feedback
+    };
+}
 </script>
 
 
