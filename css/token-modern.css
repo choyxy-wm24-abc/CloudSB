@@ -444,10 +444,10 @@ body {
     }
 }
 
-/* Animation for form elements */
+/* Animation for form elements - Fixed to show immediately */
 .form-group {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1 !important;
+    transform: translateY(0) !important;
     animation: slideInUp 0.6s ease forwards;
 }
 
@@ -456,16 +456,20 @@ body {
 .form-group:nth-child(3) { animation-delay: 0.3s; }
 
 @keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Security tips animation */
+/* Security tips animation - Fixed to show immediately */
 .tip-item {
-    opacity: 0;
-    transform: translateX(-20px);
+    opacity: 1 !important;
+    transform: translateX(0) !important;
     animation: slideInLeft 0.6s ease forwards;
 }
 
@@ -475,8 +479,49 @@ body {
 .tip-item:nth-child(4) { animation-delay: 0.7s; }
 
 @keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
     to {
         opacity: 1;
         transform: translateX(0);
     }
+}
+/* Ensure form elements are always visible - Override any hiding */
+.modern-form .form-group,
+.modern-form .form-group *,
+.modern-input,
+.input-wrapper,
+.form-group label {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+.input-wrapper {
+    display: block !important;
+}
+
+.modern-input {
+    display: block !important;
+    width: 100% !important;
+}
+
+/* Ensure submit button is visible */
+.submit-btn {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* Debug styles - remove after testing */
+.form-group {
+    border: 1px solid red !important;
+    background: rgba(255, 0, 0, 0.1) !important;
+}
+
+.modern-input {
+    border: 2px solid blue !important;
+    background: rgba(0, 0, 255, 0.1) !important;
 }
