@@ -7,22 +7,34 @@ require_once '../admin/layout.php';
 auth('Admin');
 
 $order_id = isset($_GET['order_id']) ? $_GET['order_id'] : null;
+$user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
-if (is_get()) {
-    $stm = $_db->prepare('SELECT * FROM orderlist ol JOIN product p ON ol.product_id = p.product_id WHERE order_id = ?');
-    $stm->execute([$order_id]);
-    $or = $stm->fetch();
-
-    if ($or) {
-        extract((array)$or);
-        $_SESSION['image'] = $or->image;
+// Get all order items using the correct query structure
+$orders = [];
+if ($order_id) {
+    try {
+        $stm = $_db->prepare('
+            SELECT *
+            FROM `order` AS o
+            JOIN orderlist AS ol ON o.order_id = ol.order_id
+            JOIN product AS p ON ol.product_id = p.product_id
+            WHERE o.order_id = ?
+            ORDER BY ol.product_id
+        ');
+        $stm->execute([$order_id]);
+        $orders = $stm->fetchAll();
+        
+        // If no orders found, check if the order exists
+        if (empty($orders)) {
+            $stm = $_db->prepare('SELECT * FROM `order` WHERE order_id = ?');
+            $stm->execute([$order_id]);
+            $order_exists = $stm->fetch();
+        }
+    } catch (Exception $e) {
+        // Handle database errors gracefully
+        $orders = [];
     }
 }
-
-// Get all order items
-$stm = $_db->prepare('SELECT * FROM orderlist ol JOIN product p ON ol.product_id = p.product_id WHERE order_id = ?');
-$stm->execute([$order_id]);
-$orders = $stm->fetchAll();
 
 // Get order summary
 $order_summary = null;
@@ -31,6 +43,11 @@ if (!empty($orders)) {
     $total_items = array_sum(array_column($orders, 'quantity'));
     
     // Get order info
+    $stm = $_db->prepare('SELECT * FROM `order` WHERE order_id = ?');
+    $stm->execute([$order_id]);
+    $order_summary = $stm->fetch();
+} else if ($order_id) {
+    // Try to get order info even if no items
     $stm = $_db->prepare('SELECT * FROM `order` WHERE order_id = ?');
     $stm->execute([$order_id]);
     $order_summary = $stm->fetch();
@@ -53,12 +70,12 @@ button[onclick="window.history.back()"] { display: none !important; }
     <div class="hero-section">
         <div class="hero-content">
             <div class="back-nav">
-                <a href="javascript:history.back()" class="back-btn">
+                <a href="order.php" class="back-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="m12 19-7-7 7-7"/>
                         <path d="m19 12H5"/>
                     </svg>
-                    Back to User Details
+                    Back to Orders
                 </a>
             </div>
             <div class="hero-text">
@@ -75,7 +92,7 @@ button[onclick="window.history.back()"] { display: none !important; }
                 <?php if ($order_summary): ?>
                 <p>Order #<?= htmlspecialchars($order_id) ?> • <?= date('M d, Y', strtotime($order_summary->order_date)) ?></p>
                 <?php else: ?>
-                <p>Order details and item breakdown</p>
+                <p>Order #<?= htmlspecialchars($order_id) ?> details</p>
                 <?php endif; ?>
             </div>
         </div>
@@ -95,8 +112,8 @@ button[onclick="window.history.back()"] { display: none !important; }
                     </svg>
                 </div>
                 <h2>No Order Items Found</h2>
-                <p>This order appears to be empty or the order ID is invalid.</p>
-                <a href="javascript:history.back()" class="back-to-orders-btn">
+                <p>This order appears to be empty or there was an error loading the data.</p>
+                <a href="order.php" class="back-to-orders-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="m12 19-7-7 7-7"/>
                         <path d="m19 12H5"/>
@@ -223,12 +240,12 @@ button[onclick="window.history.back()"] { display: none !important; }
                         </svg>
                         Export Data
                     </button>
-                    <a href="javascript:history.back()" class="action-btn back-btn">
+                    <a href="order.php" class="action-btn back-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="m12 19-7-7 7-7"/>
                             <path d="m19 12H5"/>
                         </svg>
-                        Back to User
+                        Back to Orders
                     </a>
                 </div>
             </div>
@@ -243,9 +260,11 @@ function exportOrder() {
     // Simple CSV export functionality
     const orderData = [
         ['Order ID', 'Product ID', 'Product Name', 'Price Per Unit', 'Quantity', 'Subtotal'],
+        <?php if (!empty($orders)): ?>
         <?php foreach ($orders as $item): ?>
         ['<?= $order_id ?>', '<?= $item->product_id ?>', '<?= addslashes($item->product_name) ?>', '<?= $item->price_per_unit ?>', '<?= $item->quantity ?>', '<?= $item->subtotal ?>'],
         <?php endforeach; ?>
+        <?php endif; ?>
     ];
     
     const csvContent = orderData.map(row => row.join(',')).join('\n');

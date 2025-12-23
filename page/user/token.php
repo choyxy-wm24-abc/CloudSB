@@ -15,27 +15,35 @@ if (!is_exists($id, 'token', 'id')) {
     redirect('/');
 }
 
+// Get user's current password for validation
+$stm = $_db->prepare('SELECT password FROM user WHERE user_id = (SELECT user_id FROM token WHERE id = ?)');
+$stm->execute([$id]);
+$current_password_hash = $stm->fetchColumn();
+
 if (is_post()) {
     $password = req('password');
     $confirm  = req('confirm');
 
     // Validate: password
     if ($password == '') {
-        $_err['password'] = 'Required';
+        $_err['password'] = 'New password is required';
     }
     else if (strlen($password) < 5 || strlen($password) > 100) {
-        $_err['password'] = 'Between 5-100 characters';
+        $_err['password'] = 'Password must be between 5-100 characters';
+    }
+    else if (SHA1($password) === $current_password_hash) {
+        $_err['password'] = 'New password must be different from your current password';
     }
 
     // Validate: confirm
     if ($confirm == '') {
-        $_err['confirm'] = 'Required';
+        $_err['confirm'] = 'Please confirm your password';
     }
     else if (strlen($confirm) < 5 || strlen($confirm) > 100) {
-        $_err['confirm'] = 'Between 5-100 characters';
+        $_err['confirm'] = 'Confirmation must be between 5-100 characters';
     }
     else if ($confirm != $password) {
-        $_err['confirm'] = 'Not matched';
+        $_err['confirm'] = 'Passwords do not match';
     }
 
     // DB operation
@@ -48,8 +56,7 @@ if (is_post()) {
         $stm = $_db->prepare('DELETE FROM token WHERE id = ?');
         $stm->execute([$id]);
 
-
-        temp('info', 'Record updated');
+        temp('info', 'Password updated successfully');
         redirect('./login.php');
     }
 }
@@ -59,7 +66,7 @@ if (is_post()) {
 $_title = 'User | Reset Password';
 ?>
 
-<link rel="stylesheet" href="/css/token-modern.css">
+<link rel="stylesheet" href="../../css/token-modern.css">
 
 <!-- Hide old styles -->
 <style>
@@ -116,7 +123,7 @@ header nav .menu { display: none !important; }
                             New Password
                         </label>
                         <div class="input-wrapper">
-                            <?= html_password('password', 'maxlength="100" placeholder="Enter your new password"') ?>
+                            <input type="password" id="password" name="password" class="modern-input" maxlength="100" placeholder="Enter your new password" required>
                             <div class="password-toggle" onclick="togglePassword('password')">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -124,7 +131,9 @@ header nav .menu { display: none !important; }
                                 </svg>
                             </div>
                         </div>
-                        <?= err('password') ?>
+                        <?php if (isset($_err['password'])): ?>
+                            <div class="error-message"><?= $_err['password'] ?></div>
+                        <?php endif; ?>
                         <div class="password-strength" id="password-strength"></div>
                     </div>
 
@@ -138,7 +147,7 @@ header nav .menu { display: none !important; }
                             Confirm Password
                         </label>
                         <div class="input-wrapper">
-                            <?= html_password('confirm', 'maxlength="100" placeholder="Confirm your new password"') ?>
+                            <input type="password" id="confirm" name="confirm" class="modern-input" maxlength="100" placeholder="Confirm your new password" required>
                             <div class="password-toggle" onclick="togglePassword('confirm')">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -146,7 +155,9 @@ header nav .menu { display: none !important; }
                                 </svg>
                             </div>
                         </div>
-                        <?= err('confirm') ?>
+                        <?php if (isset($_err['confirm'])): ?>
+                            <div class="error-message"><?= $_err['confirm'] ?></div>
+                        <?php endif; ?>
                         <div class="password-match" id="password-match"></div>
                     </div>
 
@@ -175,7 +186,7 @@ header nav .menu { display: none !important; }
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20,6 9,17 4,12"/>
                         </svg>
-                        <span>Use at least 8 characters</span>
+                        <span>Use at least 5 characters (8+ recommended)</span>
                     </div>
                     <div class="tip-item">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -193,7 +204,7 @@ header nav .menu { display: none !important; }
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20,6 9,17 4,12"/>
                         </svg>
-                        <span>Avoid common words or patterns</span>
+                        <span>Must be different from your current password</span>
                     </div>
                 </div>
             </div>
@@ -204,8 +215,25 @@ header nav .menu { display: none !important; }
 <script>
 function togglePassword(fieldId) {
     const field = document.getElementById(fieldId);
-    const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
-    field.setAttribute('type', type);
+    const toggle = field.nextElementSibling;
+    
+    if (field.type === 'password') {
+        field.type = 'text';
+        toggle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <path d="M1 1l22 22"/>
+            </svg>
+        `;
+    } else {
+        field.type = 'password';
+        toggle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+        `;
+    }
 }
 
 // Password strength checker
@@ -245,8 +273,11 @@ function checkPasswordStrength(password) {
     let score = 0;
     let feedback = [];
 
+    if (password.length >= 5) score++;
+    else feedback.push('at least 5 characters');
+
     if (password.length >= 8) score++;
-    else feedback.push('at least 8 characters');
+    else feedback.push('8+ characters recommended');
 
     if (/[a-z]/.test(password)) score++;
     else feedback.push('lowercase letters');
@@ -260,12 +291,12 @@ function checkPasswordStrength(password) {
     if (/[^A-Za-z0-9]/.test(password)) score++;
     else feedback.push('special characters');
 
-    const levels = ['weak', 'fair', 'good', 'strong', 'excellent'];
-    const texts = ['Weak', 'Fair', 'Good', 'Strong', 'Excellent'];
+    const levels = ['weak', 'weak', 'fair', 'good', 'strong', 'excellent'];
+    const texts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong', 'Excellent'];
 
     return {
         level: levels[score] || 'weak',
-        text: texts[score] || 'Weak',
+        text: texts[score] || 'Very Weak',
         feedback: feedback
     };
 }

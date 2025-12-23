@@ -1,4 +1,4 @@
-/* Token Reset Page Modern Styles */
+/* Add Address Page Modern Styles */
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
     min-height: 100vh;
 }
 
-.modern-token-page {
+.modern-add-address-page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -77,13 +77,13 @@ body {
     margin: 0 auto;
 }
 
-.security-icon {
+.address-icon {
     margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
 }
 
-.security-icon svg {
+.address-icon svg {
     width: 80px;
     height: 80px;
     stroke: white;
@@ -123,18 +123,18 @@ body {
     padding: 0 2rem;
 }
 
-/* Reset Form Card */
-.reset-form-card {
+/* Add Address Card */
+.add-address-card {
     background: white;
     border-radius: 20px;
     padding: 3rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
 }
 
-.reset-form-card::before {
+.add-address-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -144,25 +144,34 @@ body {
     background: linear-gradient(90deg, #e74c3c, #f39c12);
 }
 
-.form-header {
+.card-header {
     text-align: center;
     margin-bottom: 2.5rem;
 }
 
-.form-header h2 {
-    font-size: 2rem;
+.card-header h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
     color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
-.form-header p {
+.card-header h2 svg {
+    stroke: #e74c3c;
+}
+
+.card-header p {
     color: #7f8c8d;
     font-size: 1.1rem;
 }
 
-/* Modern Form */
-.modern-form {
-    max-width: 500px;
+/* Address Form */
+.address-form {
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -176,7 +185,7 @@ body {
     gap: 0.5rem;
     font-weight: 600;
     color: #2c3e50;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-size: 1rem;
 }
 
@@ -184,62 +193,55 @@ body {
     stroke: #e74c3c;
 }
 
-.input-wrapper {
-    position: relative;
-}
-
-.modern-input {
+.modern-textarea {
     width: 100%;
-    padding: 1rem 1.5rem;
-    padding-right: 3rem;
+    padding: 1.25rem 1.5rem;
     border: 2px solid #e9ecef;
     border-radius: 12px;
     font-size: 1rem;
+    font-family: inherit;
+    line-height: 1.6;
     transition: all 0.3s ease;
     background: #f8f9fa;
-    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
 }
 
-.modern-input:focus {
+.modern-textarea:focus {
     outline: none;
     border-color: #e74c3c;
     background: white;
     box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
 }
 
-.modern-input::placeholder {
+.modern-textarea::placeholder {
     color: #adb5bd;
     font-style: italic;
 }
 
-.password-toggle {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #7f8c8d;
-    transition: color 0.3s ease;
-    z-index: 10;
+/* Address Help */
+.address-help {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 1rem;
+    background: #e8f5e8;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
 }
 
-.password-toggle:hover {
-    color: #e74c3c;
+.address-help svg {
+    stroke: #27ae60;
+    flex-shrink: 0;
+}
+
+.address-help span {
+    color: #2c3e50;
+    font-size: 0.95rem;
 }
 
 /* Error Messages */
-.error-message {
-    color: #e74c3c;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    display: block;
-    padding: 0.5rem 1rem;
-    background: rgba(231, 76, 60, 0.1);
-    border-radius: 6px;
-    border-left: 4px solid #e74c3c;
-}
-
-/* Legacy error support */
 .err {
     color: #e74c3c;
     font-size: 0.9rem;
@@ -251,131 +253,86 @@ body {
     border-left: 4px solid #e74c3c;
 }
 
-/* Password Strength Indicator */
-.password-strength {
-    margin-top: 0.5rem;
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
-.strength-bar {
-    height: 4px;
-    background: #e9ecef;
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-}
-
-.strength-fill {
-    height: 100%;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-}
-
-.strength-weak .strength-fill {
-    width: 20%;
-    background: #e74c3c;
-}
-
-.strength-fair .strength-fill {
-    width: 40%;
-    background: #f39c12;
-}
-
-.strength-good .strength-fill {
-    width: 60%;
-    background: #f1c40f;
-}
-
-.strength-strong .strength-fill {
-    width: 80%;
-    background: #2ecc71;
-}
-
-.strength-excellent .strength-fill {
-    width: 100%;
-    background: #27ae60;
-}
-
-.strength-text {
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-/* Password Match Indicator */
-.password-match {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.match-success {
-    color: #27ae60;
-    font-weight: 500;
-}
-
-.match-error {
-    color: #e74c3c;
-    font-weight: 500;
-}
-
-/* Submit Button */
-.submit-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
-    color: white;
-    border: none;
+.submit-btn,
+.cancel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
     padding: 1rem 2rem;
     border-radius: 12px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
+    text-decoration: none;
+    border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    text-align: center;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+    color: white;
 }
 
 .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+.cancel-btn {
+    background: #6c757d;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background: #5a6268;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
 }
 
-.submit-btn:active {
-    transform: translateY(0);
-}
-
-/* Security Tips */
-.security-tips {
+/* Tips Card */
+.tips-card {
     background: white;
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
 }
 
-.security-tips h3 {
+.tips-header {
+    margin-bottom: 2rem;
+}
+
+.tips-header h3 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     color: #2c3e50;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
-.security-tips h3 svg {
+.tips-header h3 svg {
     stroke: #e74c3c;
 }
 
 .tips-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 .tip-item {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
+    gap: 1rem;
+    padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 12px;
     transition: all 0.3s ease;
@@ -384,16 +341,86 @@ body {
 .tip-item:hover {
     background: #e8f5e8;
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.tip-item svg {
-    stroke: #27ae60;
+.tip-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #e74c3c, #f39c12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
 }
 
-.tip-item span {
+.tip-icon svg {
+    stroke: white;
+}
+
+.tip-content h4 {
     color: #2c3e50;
-    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tip-content p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Examples Card */
+.examples-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.examples-header {
+    margin-bottom: 2rem;
+}
+
+.examples-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2c3e50;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.examples-header h3 svg {
+    stroke: #e74c3c;
+}
+
+.examples-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.example-item {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #e74c3c;
+}
+
+.example-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.example-text {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-style: italic;
 }
 
 /* Responsive Design */
@@ -406,22 +433,24 @@ body {
         font-size: 1.1rem;
     }
     
-    .reset-form-card {
+    .add-address-card,
+    .tips-card,
+    .examples-card {
         padding: 2rem;
         margin: 0 1rem 2rem;
     }
     
-    .security-tips {
-        padding: 2rem;
-        margin: 0 1rem;
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
     
     .tips-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .container {
-        padding: 0 1rem;
     }
 }
 
@@ -430,30 +459,44 @@ body {
         font-size: 2rem;
     }
     
-    .reset-form-card {
+    .add-address-card,
+    .tips-card,
+    .examples-card {
         padding: 1.5rem;
     }
     
-    .security-tips {
-        padding: 1.5rem;
+    .modern-textarea {
+        padding: 1rem 1.25rem;
     }
     
-    .form-group input {
-        padding: 0.875rem 1.25rem;
-        padding-right: 2.75rem;
+    .submit-btn,
+    .cancel-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .tip-item {
+        padding: 1rem;
+    }
+    
+    .tip-icon {
+        width: 35px;
+        height: 35px;
     }
 }
 
-/* Animation for form elements */
-.form-group {
+/* Animation for cards */
+.add-address-card,
+.tips-card,
+.examples-card {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
     animation: slideInUp 0.6s ease forwards;
 }
 
-.form-group:nth-child(1) { animation-delay: 0.1s; }
-.form-group:nth-child(2) { animation-delay: 0.2s; }
-.form-group:nth-child(3) { animation-delay: 0.3s; }
+.add-address-card { animation-delay: 0.1s; }
+.tips-card { animation-delay: 0.2s; }
+.examples-card { animation-delay: 0.3s; }
 
 @keyframes slideInUp {
     to {
@@ -462,11 +505,11 @@ body {
     }
 }
 
-/* Security tips animation */
+/* Tips animation */
 .tip-item {
     opacity: 0;
     transform: translateX(-20px);
-    animation: slideInLeft 0.6s ease forwards;
+    animation: slideInLeft 0.5s ease forwards;
 }
 
 .tip-item:nth-child(1) { animation-delay: 0.4s; }
@@ -479,4 +522,30 @@ body {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* Examples animation */
+.example-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.5s ease forwards;
+}
+
+.example-item:nth-child(1) { animation-delay: 0.6s; }
+.example-item:nth-child(2) { animation-delay: 0.7s; }
+.example-item:nth-child(3) { animation-delay: 0.8s; }
+
+/* Form elements animation */
+.form-group {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.6s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.form-actions {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.6s ease forwards;
+    animation-delay: 0.4s;
 }
